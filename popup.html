@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Untouch Flow</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header class="hdr">
+      <div class="brand-wrap">
+        <div class="brand">
+          <svg viewBox="0 0 24 24" class="ico"><path d="m7 13 5 5 5-5M7 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+          <strong>Untouch Flow</strong>
+        </div>
+        <span class="brand-tag">Auto Scroll • Auto Next</span>
+      </div>
+      <div class="hdr-right">
+        <!-- Language Icon Picker (Only Flag/Globe Icon visible, Hover displays Language Name) -->
+        <div class="lang-picker-box">
+          <select class="lang-select" id="langSelect" title="English">
+            <option value="en" title="English">🇬🇧 English</option>
+            <option value="th" title="ภาษาไทย">🇹🇭 ภาษาไทย</option>
+            <option value="ja" title="日本語">🇯🇵 日本語</option>
+            <option value="ko" title="한국어">🇰🇷 한국어</option>
+            <option value="zh" title="中文">🇨🇳 中文</option>
+            <option value="ar" title="العربية">🇸🇦 العربية</option>
+            <option value="ru" title="Русский">🇷🇺 Русский</option>
+            <option value="de" title="Deutsch">🇩🇪 Deutsch</option>
+            <option value="it" title="Italiano">🇮🇹 Italiano</option>
+            <option value="es" title="Español">🇪🇸 Español</option>
+            <option value="vi" title="Tiếng Việt">🇻🇳 Tiếng Việt</option>
+            <option value="ms" title="Bahasa Melayu">🇲🇾 Bahasa Melayu</option>
+            <option value="id" title="Bahasa Indonesia">🇮🇩 Bahasa Indonesia</option>
+          </select>
+          <span class="lang-flag-display" id="langFlagDisplay">🇬🇧</span>
+        </div>
+        <button class="lang-btn" id="langBtn" style="display:none;" title="Switch Language">EN</button>
+        <div class="badge">
+          <span class="dot" id="statusDot"></span>
+          <span id="statusTxt">Paused</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Top Distinct Donate Bar -->
+    <div class="donate-bar">
+      <button class="donate-btn" id="donateBtn">
+        <span class="coffee-ico">☕</span>
+        <span class="donate-lbl" data-i18n="donateLbl">สนับสนุนค่ากาแฟ (Buy Me a Coffee)</span>
+      </button>
+    </div>
+
+    <!-- Mode Switcher (Modern Minimal Segmented Control, No Icons) -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="tabManga" data-mode="manga">
+        <span class="m-txt" data-i18n="modeManga">Manga Mode</span>
+      </button>
+      <button class="mode-tab" id="tabReader" data-mode="reader">
+        <span class="m-txt" data-i18n="modeReader">Reader Mode</span>
+      </button>
+    </div>
+
+    <!-- Main Play/Pause Button -->
+    <button class="cta" id="playBtn">
+      <span id="playIco">▶</span>
+      <span id="playTxt" data-i18n="startBtn">Start Scrolling (Space)</span>
+    </button>
+
+    <!-- Speed Section -->
+    <section class="card">
+      <div class="row">
+        <span class="lbl" data-i18n="speedLbl">Scroll Speed</span>
+        <div class="num-wrap">
+          <input type="number" id="speedNum" min="10" max="2000" step="5" value="140" class="num-inp">
+          <span class="unit">px/s</span>
+        </div>
+      </div>
+      <input type="range" id="speedSlider" min="10" max="1000" step="5" value="140" class="rng">
+      
+      <!-- Manga Mode Speed Presets -->
+      <div class="presets" id="mangaPresets">
+        <button class="p-btn" data-s="60">60</button>
+        <button class="p-btn active" data-s="140">140</button>
+        <button class="p-btn" data-s="260">260</button>
+        <button class="p-btn" data-s="450">450</button>
+      </div>
+
+      <!-- Reader Mode Speed Presets -->
+      <div class="presets hidden" id="readerPresets">
+        <button class="p-btn" data-s="35">35</button>
+        <button class="p-btn active" data-s="65">65</button>
+        <button class="p-btn" data-s="100">100</button>
+        <button class="p-btn" data-s="150">150</button>
+      </div>
+    </section>
+
+    <!-- Zoom & Page Scale Controller (No Spinners, Plenty of Margin) -->
+    <section class="card">
+      <div class="row">
+        <div class="lbl-wrap">
+          <span class="lbl" data-i18n="zoomLbl">🔍 Manga / Page Zoom</span>
+          <span class="sub-hint" data-i18n="zoomSub">Scale manga to comfortable reading width</span>
+        </div>
+        <div class="num-wrap zoom-input-wrap">
+          <button class="mini-btn" id="zoomMinus">−</button>
+          <input type="number" id="zoomNum" min="40" max="180" step="5" value="100" class="num-inp zoom-inp">
+          <span class="unit">%</span>
+          <button class="mini-btn" id="zoomPlus">+</button>
+        </div>
+      </div>
+      <input type="range" id="zoomSlider" min="50" max="150" step="5" value="100" class="rng">
+      <div class="presets zoom-presets">
+        <button class="p-btn z-btn" data-z="70">70%</button>
+        <button class="p-btn z-btn" data-z="85">85%</button>
+        <button class="p-btn z-btn active" data-z="100">100%</button>
+        <button class="p-btn z-btn" data-z="120">120%</button>
+        <button class="p-btn z-btn reset-z" id="resetZoomBtn" title="Reset Zoom to 100%">↺</button>
+      </div>
+    </section>
+
+    <!-- Single Unified Next Chapter Delay Card (Default 1s) -->
+    <section class="card" id="mangaTimingSec">
+      <div class="row">
+        <div class="lbl-wrap">
+          <span class="lbl" data-i18n="nextDelayLbl">Next Chapter Delay</span>
+          <span class="sub-hint" data-i18n="nextDelaySub">Hold at bottom before advancing to next chapter</span>
+        </div>
+        <div class="num-wrap">
+          <input type="number" id="nextDelayNum" min="0" max="15" step="0.5" value="1" class="num-inp xs">
+          <span class="unit" data-i18n="unitSec">s</span>
+        </div>
+      </div>
+      <input type="range" id="nextDelaySlider" min="0" max="10" step="0.5" value="1" class="rng">
+      <div class="presets delay-presets">
+        <button class="p-btn d-btn" data-d="0">0s (Instant)</button>
+        <button class="p-btn d-btn active" data-d="1">1s (Default)</button>
+        <button class="p-btn d-btn" data-d="2">2s</button>
+        <button class="p-btn d-btn" data-d="3">3s</button>
+      </div>
+    </section>
+
+    <!-- Reader Mode Specific Helper (PDF Page Range) -->
+    <section class="card hidden" id="readerHelperSec">
+      <div class="row">
+        <div>
+          <span class="lbl sm" data-i18n="pdfEndLbl">📑 Stop at Page (PDF)</span>
+          <div class="sub-hint" data-i18n="pdfEndSub">Pause scrolling when reaching page number (0 = all)</div>
+        </div>
+        <div class="num-wrap">
+          <input type="number" id="pdfEndNum" min="0" max="999" step="1" value="0" class="num-inp xs">
+          <span class="unit" data-i18n="unitPage">pg</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compact Quick Toggles Grid (Renamed HUD to MiniTool) -->
+    <section class="card toggles-grid">
+      <div class="tgl-item" id="autoNextItem">
+        <span class="lbl sm" data-i18n="autoNextLbl">Auto-Next</span>
+        <label class="sw"><input type="checkbox" id="autoNext" checked><span class="sld"></span></label>
+      </div>
+      <div class="tgl-item">
+        <span class="lbl sm" data-i18n="hudLbl">MiniTool</span>
+        <label class="sw"><input type="checkbox" id="showHud" checked><span class="sld"></span></label>
+      </div>
+      <div class="tgl-item">
+        <span class="lbl sm" data-i18n="autoHideHudLbl">Dim MiniTool on Scroll</span>
+        <label class="sw"><input type="checkbox" id="autoHideHud"><span class="sld"></span></label>
+      </div>
+      <div class="tgl-item">
+        <span class="lbl sm" data-i18n="urlFallbackLbl">URL Fallback</span>
+        <label class="sw"><input type="checkbox" id="urlFallback"><span class="sld"></span></label>
+      </div>
+    </section>
+
+    <!-- Profiles Section (Clean Selector Dropdown on the right, No Scrolling) -->
+    <section class="card prof-card">
+      <div class="prof-header-row">
+        <span class="lbl" data-i18n="profLbl">Profiles</span>
+        <div class="prof-picker-wrap">
+          <select id="profileSelect" class="prof-select" title="Switch Profile"></select>
+          <button class="add-prof-btn" id="addProfileBtn" title="Create New Profile">+ New</button>
+        </div>
+      </div>
+
+      <div class="prof-body">
+        <div class="prof-name-row">
+          <input type="text" id="profNameInp" class="prof-name-inp" placeholder="Profile Name" maxlength="24">
+          <button class="save-prof-btn" id="saveProfBtn">
+            <span data-i18n="saveProf">Save Settings</span>
+          </button>
+          <button class="del-prof-btn hidden" id="delProfBtn" title="Delete Profile">✕</button>
+        </div>
+
+        <!-- Web List in this profile -->
+        <div class="prof-sites-sec">
+          <div class="sites-lbl-row">
+            <span class="lbl xs" data-i18n="sitesInProf">Sites linked to this Profile:</span>
+            <span class="sites-count" id="sitesCount">0 sites</span>
+          </div>
+          <div class="chips-wrap" id="chipsWrap"></div>
+          <button class="add-curr-btn" id="addCurrSiteBtn">
+            <span id="addCurrTxt">+ Add current site to this Profile</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Shortcuts -->
+    <footer class="ftr">
+      <span><kbd>Space</kbd> <span data-i18n="kPlay">Play/Pause</span></span>
+      <span><kbd>Alt+H</kbd> <span data-i18n="kHud">MiniTool</span></span>
+      <span><kbd>Esc</kbd> <span data-i18n="kStop">Stop</span></span>
+      <span><kbd>↑/↓</kbd> <span data-i18n="kSpeed">Speed</span></span>
+    </footer>
+
+    <!-- Donate Modal Overlay -->
+    <div class="modal-overlay hidden" id="donateModal">
+      <div class="modal-box">
+        <div class="modal-hdr">
+          <div class="modal-title">☕ <span data-i18n="donateModalTitle">Support Developer</span></div>
+          <button class="modal-x" id="closeDonate">✕</button>
+        </div>
+        <div class="modal-desc" data-i18n="donateDesc">
+          If Untouch Flow enhances your reading experience, buying a coffee is greatly appreciated! Thank you for your support ❤️
+        </div>
+        <div class="donate-channels">
+          <div class="chan-box">
+            <div class="chan-title">📱 PromptPay (พร้อมเพย์)</div>
+            <div class="pp-num-wrap">
+              <span class="pp-num" id="ppNum">095-xxx-xxxx</span>
+              <button class="copy-btn" id="copyPpBtn" data-i18n="copyBtn">Copy</button>
+            </div>
+            <div class="pp-tip" data-i18n="ppTip">(Scan via Thai Banking apps)</div>
+          </div>
+          <a href="https://www.buymeacoffee.com" target="_blank" class="chan-link-btn bmc">
+            <span>☕ Buy Me a Coffee (Card / Apple Pay)</span>
+            <span>↗</span>
+          </a>
+        </div>
+        <button class="modal-close-btn" id="doneDonateBtn" data-i18n="closeBtn">Close</button>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
