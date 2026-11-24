@@ -739,11 +739,17 @@
       this.el.mini.addEventListener('pointerdown', onPointerDown);
     }
 
-    fixScale() {
-      // Browser zoom shrinks innerWidth vs outerWidth; only trust ratios that match a real zoom step (devtools docking gives odd ratios)
-      const r = window.outerWidth / window.innerWidth;
-      const step = [0.25, 0.33, 0.5, 0.67, 0.75, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2, 2.5, 3, 4, 5].find(z => Math.abs(r - z) / z < 0.04) || 1;
-      this.host.style.setProperty('transform', step === 1 ? 'none' : `scale(${1 / step})`, 'important');
+    fixScale(z) {
+      // z = real browser zoom from the background script; without it (userscript) guess from window sizes
+      if (typeof z === 'number' && z > 0) this.zf = z;
+      let step = this.zf;
+      if (!step) {
+        const r = window.outerWidth / window.innerWidth;
+        step = [0.25, 0.33, 0.5, 0.67, 0.75, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2, 2.5, 3, 4, 5].find(v => Math.abs(r - v) / v < 0.04) || 1;
+      }
+      this.host.style.setProperty('transform', Math.abs(step - 1) < 0.01 ? 'none' : `scale(${1 / step})`, 'important');
+      const pos = this.storage.get().hudPos;
+      if (pos) this.applyPosition(pos);
     }
     applyPosition(pos) {
       if (pos && typeof pos.x === 'number' && typeof pos.y === 'number') {
@@ -905,6 +911,7 @@
       this.bindStorage();
       this.bindSPA();
       this.bindMessages();
+      try { chrome.runtime.sendMessage({ type: 'MFS_ZOOM_Q' }, z => { void chrome.runtime.lastError; if (typeof z === 'number') this.hud.fixScale(z); }); } catch (_) {}
 
       // Only resume if coming from an auto-next navigation on the same manga domain!
       const shouldResume = sessionStorage.getItem('mfs_next_resume') === 'true' ||
@@ -922,6 +929,8 @@
         chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           if (msg?.type === 'MFS_GET_STATUS') {
             sendResponse({ isPlaying: this.isPlaying, speed: this.speed, state: this.state });
+          } else if (msg?.type === 'MFS_ZOOM') {
+            this.hud.fixScale(msg.z);
           } else if (msg?.type === 'MFS_TOGGLE_PLAY') {
             this.toggle();
             sendResponse({ isPlaying: this.isPlaying, speed: this.speed, state: this.state });

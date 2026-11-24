@@ -35,5 +35,8 @@
       "run_at": "document_idle"
     }
   ],
-  "author": "Sufarwee Dunyamat (sufarweededev)"
+  "author": "Sufarwee Dunyamat (sufarweededev)",
+  "background": {
+    "service_worker": "bg.js"
+  }
 }
