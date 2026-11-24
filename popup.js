@@ -530,7 +530,7 @@
     const sortedProfiles = getSortedProfileList();
 
     // Populate <select>
-    ui.profileSelect.innerHTML = '';
+    ui.profileSelect.replaceChildren();
     sortedProfiles.forEach(p => {
       const opt = document.createElement('option');
       opt.value = p.id;
@@ -548,7 +548,7 @@
     // Sites in this profile
     const sites = Array.isArray(prof.sites) ? prof.sites : [];
     ui.sitesCount.textContent = dict.sitesCountTxt(sites.length);
-    ui.chipsWrap.innerHTML = '';
+    ui.chipsWrap.replaceChildren();
 
     if (sites.length === 0) {
       const emptySpan = document.createElement('span');
@@ -559,8 +559,14 @@
       sites.forEach(s => {
         const chip = document.createElement('span');
         chip.className = 'chip';
-        chip.innerHTML = `<span>${s}</span><span class="chip-x" data-s="${s}">✕</span>`;
-        chip.querySelector('.chip-x').onclick = (e) => {
+        const label = document.createElement('span');
+        label.textContent = s;
+        const x = document.createElement('span');
+        x.className = 'chip-x';
+        x.dataset.s = s;
+        x.textContent = '✕';
+        chip.append(label, x);
+        x.onclick = (e) => {
           e.stopPropagation();
           removeSiteFromProfile(s);
         };
@@ -828,10 +834,10 @@
         const lang = cfg.lang || 'en';
         const dict = I18N[lang] || I18N.en;
         ui.saveProfBtn.classList.add('ok');
-        ui.saveProfBtn.innerHTML = `<span>✓ ${dict.savedOk}</span>`;
+        { const sp = document.createElement('span'); sp.textContent = `✓ ${dict.savedOk}`; ui.saveProfBtn.replaceChildren(sp); }
         setTimeout(() => {
           ui.saveProfBtn.classList.remove('ok');
-          ui.saveProfBtn.innerHTML = `<span>${dict.saveProf}</span>`;
+          { const sp = document.createElement('span'); sp.textContent = dict.saveProf; ui.saveProfBtn.replaceChildren(sp); }
         }, 1200);
       }
     };

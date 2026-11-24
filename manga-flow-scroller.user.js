@@ -3,11 +3,9 @@
 // @namespace    https://github.com/untouch-flow
 // @version      2.0.2
 // @description  Silky-smooth auto-scroller for manga, webtoons & web articles with MiniTool, page zoom, multilingual support (13 languages) & auto-next navigation for Safari iOS, iPadOS, Chrome, Firefox, Kiwi Browser
-// @author       Untouch Flow Team
+// @author       Sufarwee Dunyamat (sufarweededev)
 // @match        *://*/*
-// @match        http://*/*
-// @match        https://*/*
-// @include      *
+// @noframes
 // @grant        none
 // @run-at       document-end
 // ==/UserScript==
@@ -520,7 +518,7 @@
       const dict = this.getDict();
 
       this.root = host.attachShadow({ mode: 'open' });
-      this.root.innerHTML = `
+      const ui = new DOMParser().parseFromString(`
         <style>
           * {
             box-sizing: border-box; margin: 0; padding: 0;
@@ -529,11 +527,11 @@
           }
           :host { all: initial; }
           .p {
-            display: inline-flex; align-items: center; gap: 5px;
+            display: inline-flex; flex-direction: column; align-items: center; gap: 5px; width: 52px;
             background: rgba(15, 23, 42, 0.94);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 99px;
-            padding: 3px 9px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 18px;
+            padding: 7px 4px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
             user-select: none; -webkit-user-select: none;
             touch-action: none; -webkit-touch-callout: none;
             transition: opacity .25s ease, transform .15s ease, box-shadow .15s ease;
@@ -559,27 +557,27 @@
           .dot.cd { background: #8b5cf6; box-shadow: 0 0 6px #8b5cf6; }
           .dot.end { background: #ef4444; box-shadow: 0 0 6px #ef4444; }
           @keyframes pl { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.2)} }
-          .t { font-weight: 600; white-space: nowrap; font-size: 11.5px; max-width: 95px; overflow: hidden; text-overflow: ellipsis; }
-          .s { font-size: 10px; font-weight: 700; color: #93c5fd; background: rgba(255, 255, 255, 0.12); padding: 1px 5px; border-radius: 4px; white-space: nowrap; }
-          .bs { display: flex; align-items: center; gap: 3px; cursor: default; }
+          .t { font-weight: 600; white-space: nowrap; font-size: 9px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+          .s { font-size: 9px; text-align: center; font-weight: 700; color: #93c5fd; background: rgba(255, 255, 255, 0.12); padding: 1px 5px; border-radius: 4px; white-space: nowrap; }
+          .bs { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: default; }
           .b {
             background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #fff; width: 22px; height: 22px; border-radius: 4px; display: flex;
+            color: #fff; width: 34px; height: 30px; border-radius: 8px; display: flex;
             align-items: center; justify-content: center; cursor: pointer; font-size: 11px; font-weight: 700;
           }
           .b:hover { background: rgba(255, 255, 255, 0.22); }
-          .pb { width: 24px; height: 24px; background: #6366f1; border-color: #818cf8; border-radius: 50%; font-size: 11px; }
+          .pb { width: 34px; height: 34px; background: #6366f1; border-color: #818cf8; border-radius: 50%; font-size: 11px; }
           .pb:hover { background: #4f46e5; }
           .zb {
-            width: auto; height: 22px; padding: 0 5px; font-size: 10px; font-weight: 700; color: #93c5fd;
+            width: 34px; height: 26px; padding: 0; font-size: 9px; font-weight: 700; color: #93c5fd;
             background: rgba(255, 255, 255, 0.08); border-radius: 4px;
           }
           .zb:hover { background: rgba(99, 102, 241, 0.3); border-color: #818cf8; color: #fff; }
           .cb { background: #ef4444; border: 0; color: #fff; padding: 1px 6px; height: 22px; border-radius: 4px; font-size: 10px; font-weight: 600; cursor: pointer; display: none; }
           .hide-btn {
             background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.20);
-            color: #ffffff; padding: 0 8px; width: auto; height: 22px; border-radius: 5px;
-            font-size: 11.5px; font-weight: 700; cursor: pointer; white-space: nowrap;
+            color: #ffffff; padding: 0; width: 34px; height: 24px; border-radius: 8px;
+            font-size: 9px; font-weight: 700; cursor: pointer; white-space: nowrap;
             display: inline-flex; align-items: center; justify-content: center;
             transition: all .15s ease;
           }
@@ -602,7 +600,8 @@
             <button class="hide-btn" id="hBtn" title="${dict.hideTip}">${dict.hideBtn}</button>
           </div>
         </div>
-      `;
+      `, 'text/html');
+      this.root.append(...ui.head.childNodes, ...ui.body.childNodes);
 
       const $ = id => this.root.getElementById(id);
       this.el = {
@@ -666,8 +665,8 @@
         const dy = e.clientY - startY;
 
         const rect = this.host.getBoundingClientRect();
-        const w = rect.width || 250;
-        const h = rect.height || 32;
+        const w = rect.width || 46;
+        const h = rect.height || 250;
         const maxX = Math.max(8, window.innerWidth - w - 8);
         const maxY = Math.max(8, window.innerHeight - h - 8);
 
@@ -700,8 +699,8 @@
     applyPosition(pos) {
       if (pos && typeof pos.x === 'number' && typeof pos.y === 'number') {
         const rect = this.host.getBoundingClientRect();
-        const w = rect.width > 0 ? rect.width : 250;
-        const h = rect.height > 0 ? rect.height : 32;
+        const w = rect.width > 0 ? rect.width : 46;
+        const h = rect.height > 0 ? rect.height : 250;
         const maxX = Math.max(8, window.innerWidth - w - 8);
         const maxY = Math.max(8, window.innerHeight - h - 8);
         const x = Math.max(8, Math.min(maxX, pos.x));
@@ -715,7 +714,7 @@
         this.host.style.setProperty('left', 'auto', 'important');
         this.host.style.setProperty('top', 'auto', 'important');
         this.host.style.setProperty('right', 'calc(14px + env(safe-area-inset-right, 0px))', 'important');
-        this.host.style.setProperty('bottom', 'calc(70px + env(safe-area-inset-bottom, 0px))', 'important');
+        this.host.style.setProperty('bottom', 'calc(120px + env(safe-area-inset-bottom, 0px))', 'important');
       }
     }
 
@@ -1142,13 +1141,19 @@
       const dt = Math.min(now - (this.lastTs || now), 100);
       this.lastTs = now;
       this.subPixelAccumulator += (this.speed * dt) / 1000;
-      const px = Math.floor(this.subPixelAccumulator);
-      if (px >= 1) {
-        this.subPixelAccumulator -= px;
+      const px = this.subPixelAccumulator;
+      if (px >= 0.05) {
+        this.subPixelAccumulator = 0;
         const m = this.getMetrics();
         this.isProg = true;
-        if (m.t === window) window.scrollBy(0, px);
-        else m.t.scrollTop += px;
+        if (m.t === window) {
+          // iOS WebKit drops small relative scrollBy deltas; track a float target and scroll absolutely
+          const y = window.scrollY || 0;
+          if (this.lastSetY == null || Math.abs(y - this.lastSetY) > 6) this.pos = y;
+          this.pos += px;
+          this.lastSetY = this.pos;
+          window.scrollTo(0, this.pos);
+        } else m.t.scrollTop += px;
         requestAnimationFrame(() => { this.isProg = false; });
       }
       const cur = this.getMetrics();
