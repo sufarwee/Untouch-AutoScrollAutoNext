@@ -1,12 +1,15 @@
 // ==UserScript==
 // @name         Untouch Flow (Auto Scroll • Auto Next)
 // @namespace    https://github.com/untouch-flow
-// @version      2.0.0
+// @version      2.0.1
 // @description  Silky-smooth auto-scroller for manga, webtoons & web articles with MiniTool, page zoom, multilingual support (13 languages) & auto-next navigation for Safari iOS, iPadOS, Chrome, Firefox, Kiwi Browser
 // @author       Untouch Flow Team
 // @match        *://*/*
+// @match        http://*/*
+// @match        https://*/*
+// @include      *
 // @grant        none
-// @run-at       document-idle
+// @run-at       document-end
 // ==/UserScript==
 
 (() => {
@@ -531,7 +534,9 @@
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 99px;
             padding: 3px 9px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-            user-select: none; transition: opacity .25s ease, transform .15s ease, box-shadow .15s ease;
+            user-select: none; -webkit-user-select: none;
+            touch-action: none; -webkit-touch-callout: none;
+            transition: opacity .25s ease, transform .15s ease, box-shadow .15s ease;
             font-size: 11.5px; color: #f8fafc; cursor: grab;
             max-width: calc(100vw - 16px);
           }
@@ -639,7 +644,7 @@
 
       const onPointerDown = e => {
         if (e.target.closest('button')) return;
-        if (e.button !== 0) return;
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
         isDragging = true;
         startX = e.clientX;
         startY = e.clientY;
@@ -709,8 +714,8 @@
       } else {
         this.host.style.setProperty('left', 'auto', 'important');
         this.host.style.setProperty('top', 'auto', 'important');
-        this.host.style.setProperty('right', '14px', 'important');
-        this.host.style.setProperty('bottom', '14px', 'important');
+        this.host.style.setProperty('right', 'calc(14px + env(safe-area-inset-right, 0px))', 'important');
+        this.host.style.setProperty('bottom', 'calc(70px + env(safe-area-inset-bottom, 0px))', 'important');
       }
     }
 
@@ -929,8 +934,9 @@
     }
     bindEvents() {
       // User manual scroll interruption
-      const onUser = () => {
+      const onUser = (e) => {
         if (this.isProg) return;
+        if (e && e.composedPath && e.composedPath().some(el => el === this.hud?.host || (el && el.id === 'mfs-host'))) return;
         if (this.isPlaying && (this.state === 'SCROLLING' || this.state === 'VERIFYING_BOTTOM')) {
           this.pause('userPaused');
         }
@@ -1141,7 +1147,7 @@
         this.subPixelAccumulator -= px;
         const m = this.getMetrics();
         this.isProg = true;
-        if (m.t === window) window.scrollBy({ top: px, behavior: 'instant' });
+        if (m.t === window) window.scrollBy(0, px);
         else m.t.scrollTop += px;
         requestAnimationFrame(() => { this.isProg = false; });
       }
