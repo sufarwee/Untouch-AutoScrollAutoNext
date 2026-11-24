@@ -2,4 +2,8 @@
 *.doc
 *.docx
 for-firefox/
+dist/
+promptme/
+promptme-nonupload/
+*-nonupload/
 *.log

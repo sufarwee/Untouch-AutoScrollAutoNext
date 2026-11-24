@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "Untouch Flow (Auto Scroll • Auto Next)",
+  "version": "2.0.3",
+  "description": "Untouch Flow - Smooth auto-scroller for manga, webtoons and web articles with smart page zoom and auto-next navigation.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "untouch-flow@sufarwee.github.io",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "author": "Sufarwee Dunyamat (sufarweededev)"
+}

@@ -1,0 +1,15 @@
+#mfs-host {
+  all: initial !important;
+  position: fixed !important;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483647 !important;
+  display: block !important;
+  pointer-events: auto !important;
+}
+#mfs-host.mfs-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

@@ -68,7 +68,7 @@
 1. เปิด **Firefox**
 2. พิมพ์ที่ช่อง URL: `about:debugging#/runtime/this-firefox` แล้วกด Enter
 3. คลิกปุ่ม **"โหลด Add-on ชั่วคราว..." (Load Temporary Add-on...)**
-4. เลือกไฟล์: `for-firefox/manga-flow-scroller-firefox.zip` (หรือเลือกไฟล์ `manifest.json` ภายในโฟลเดอร์)
+4. เลือกไฟล์: `dist/untouch-flow-firefox.zip` (สร้างด้วย `sh build.sh`) หรือเลือกไฟล์ `manifest.json` ในโฟลเดอร์ `firefox/`
 5. ส่วนขยายจะเริ่มทำงานทันที
 
 *(หากต้องการติดตั้งถาวร ให้ส่งไฟล์ `manga-flow-scroller-firefox.zip` ขึ้นเว็บ addons.mozilla.org ผ่าน Developer Hub ฟรี 100%)*

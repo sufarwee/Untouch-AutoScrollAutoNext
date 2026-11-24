@@ -179,7 +179,7 @@ Microsoft Edge Add-ons เป็น Store ทางการของ Microsoft 
    - `popup.css`
    - `popup.js`
    - โฟลเดอร์ `icons/` (มี icon16.png, icon48.png, icon128.png)
-2. บีบอัดเป็นไฟล์ zip (มีไฟล์สำเร็จรูปพร้อมใช้งานอยู่ที่ [for-firefox/manga-flow-scroller-firefox.zip](file:///Users/sufarwee/Documents/scroll-manga/for-firefox/manga-flow-scroller-firefox.zip))
+2. บีบอัดเป็นไฟล์ zip (มีไฟล์สำเร็จรูปพร้อมใช้งานอยู่ที่ `dist/untouch-flow-firefox.zip` (สร้างด้วย `sh build.sh`))
 
 #### ขั้นที่ 2: สมัครบัญชี Microsoft Partner Center (Developer Account)
 1. เข้าไปที่: [Microsoft Partner Center - Edge Developer](https://partner.microsoft.com/dashboard/microsoftedge)
@@ -236,7 +236,7 @@ Mozilla Firefox Add-ons (addons.mozilla.org หรือ AMO) เป็น Store
 3. ยอมรับเงื่อนไข Developer Agreement
 
 #### ขั้นที่ 3: อัปโหลดไฟล์ Zip
-1. อัปโหลดไฟล์ [manga-flow-scroller-firefox.zip](file:///Users/sufarwee/Documents/scroll-manga/for-firefox/manga-flow-scroller-firefox.zip)
+1. อัปโหลดไฟล์ `dist/untouch-flow-firefox.zip`
 2. ระบบจะทำการรัน Automated Validator ตรวจสอบความปลอดภัยของโค้ด
 3. หัวข้อ **"Source Code"**:
    - ระบบจะถามว่าโค้ดผ่านการ Minify / Webpack / Obfuscate มาหรือไม่

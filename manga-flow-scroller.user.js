@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Untouch Flow (Auto Scroll • Auto Next)
 // @namespace    https://github.com/untouch-flow
-// @version      2.0.2
+// @version      2.0.3
 // @description  Silky-smooth auto-scroller for manga, webtoons & web articles with MiniTool, page zoom, multilingual support (13 languages) & auto-next navigation for Safari iOS, iPadOS, Chrome, Firefox, Kiwi Browser
 // @author       Sufarwee Dunyamat (sufarweededev)
 // @match        *://*/*

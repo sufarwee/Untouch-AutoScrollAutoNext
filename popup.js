@@ -588,8 +588,8 @@
   }
 
   ui.addCurrBtnState = function(isAdded, text, disabled) {
-    ui.addCurrBtn.classList.toggle('added', isAdded);
-    ui.addCurrBtn.disabled = Boolean(disabled);
+    ui.addCurrSiteBtn.classList.toggle('added', isAdded);
+    ui.addCurrSiteBtn.disabled = Boolean(disabled);
     ui.addCurrTxt.textContent = text;
   };
 
@@ -817,7 +817,7 @@
       save({ activeProfileId: viewingProfileId });
     };
     ui.addProfileBtn.onclick = createNewProfile;
-    ui.delProfileBtn.onclick = deleteCurrentProfile;
+    ui.delProfBtn.onclick = deleteCurrentProfile;
     ui.addCurrSiteBtn.onclick = toggleCurrentSiteInProfile;
 
     // Save Profile Settings Button
