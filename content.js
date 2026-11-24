@@ -278,7 +278,7 @@
     }
     async init() {
       return new Promise(res => {
-        if (!chrome?.storage?.local) {
+        if (typeof chrome === 'undefined' || !chrome?.storage?.local) {
           try {
             const raw = localStorage.getItem('__MFS_CFG__');
             if (raw) this.cfg = { ...DEF, ...JSON.parse(raw) };
@@ -321,7 +321,7 @@
     }
     async save(p) {
       this.cfg = { ...this.cfg, ...p };
-      if (chrome?.storage?.local) {
+      if (typeof chrome !== 'undefined' && chrome?.storage?.local) {
         await chrome.storage.local.set(p);
       } else {
         try {
@@ -845,7 +845,7 @@
       }
     }
     bindMessages() {
-      if (chrome?.runtime?.onMessage) {
+      if (typeof chrome !== 'undefined' && chrome?.runtime?.onMessage) {
         chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           if (msg?.type === 'MFS_GET_STATUS') {
             sendResponse({ isPlaying: this.isPlaying, speed: this.speed, state: this.state });

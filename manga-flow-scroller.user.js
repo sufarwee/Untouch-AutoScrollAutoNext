@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Untouch Flow (Auto Scroll • Auto Next)
 // @namespace    https://github.com/untouch-flow
-// @version      2.0.1
+// @version      2.0.2
 // @description  Silky-smooth auto-scroller for manga, webtoons & web articles with MiniTool, page zoom, multilingual support (13 languages) & auto-next navigation for Safari iOS, iPadOS, Chrome, Firefox, Kiwi Browser
 // @author       Untouch Flow Team
 // @match        *://*/*
@@ -292,7 +292,7 @@
     }
     async init() {
       return new Promise(res => {
-        if (!chrome?.storage?.local) {
+        if (typeof chrome === 'undefined' || !chrome?.storage?.local) {
           try {
             const raw = localStorage.getItem('__MFS_CFG__');
             if (raw) this.cfg = { ...DEF, ...JSON.parse(raw) };
@@ -335,7 +335,7 @@
     }
     async save(p) {
       this.cfg = { ...this.cfg, ...p };
-      if (chrome?.storage?.local) {
+      if (typeof chrome !== 'undefined' && chrome?.storage?.local) {
         await chrome.storage.local.set(p);
       } else {
         try {
@@ -859,7 +859,7 @@
       }
     }
     bindMessages() {
-      if (chrome?.runtime?.onMessage) {
+      if (typeof chrome !== 'undefined' && chrome?.runtime?.onMessage) {
         chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           if (msg?.type === 'MFS_GET_STATUS') {
             sendResponse({ isPlaying: this.isPlaying, speed: this.speed, state: this.state });
