@@ -82,9 +82,12 @@ One codebase, everywhere you read:
 Load via `about:debugging#/runtime/this-firefox` ➔ **Load Temporary Add-on...** and pick `manifest.json`.
 
 ### 🍎 iPhone & iPad (Safari via Userscripts)
-1. Install the free [Userscripts](https://apps.apple.com/app/userscripts/id1463298887) app from App Store.
-2. Open Safari, tap the puzzle icon, and drop [`manga-flow-scroller.user.js`](manga-flow-scroller.user.js) into your Userscripts directory.
-3. Open any manga site — Untouch Flow will run natively inside mobile Safari!
+1. Install the free **[Userscripts](https://apps.apple.com/app/userscripts/id1463298887)** extension from the App Store.
+2. In the iOS **Files** app, create a folder (e.g. `scripts`) under *On My iPhone / On My iPad* and place [`manga-flow-scroller.user.js`](manga-flow-scroller.user.js) inside it.
+3. Go to iOS **Settings** ➔ **Safari** ➔ **Extensions** ➔ tap **Userscripts** ➔ toggle **On** and set permissions to **Always Allow** on All Websites.
+4. Open Safari, load any webpage, and press **Refresh**.
+5. Tap the **`aA`** or puzzle extension icon (or menu button) beside the address bar ➔ select **Userscripts** ➔ tap **Set Userscripts Directory** ➔ choose the folder created in step 2.
+6. Open any manga site — the Untouch Flow MiniTool will appear and scroll automatically!
 
 ### 🤖 Android & Smart TV (Kiwi Browser)
 Install **Kiwi Browser** (which natively supports desktop extensions), open `chrome://extensions`, and load this folder. Perfect for reading on Android tablets or on your TV with an Air Mouse!
