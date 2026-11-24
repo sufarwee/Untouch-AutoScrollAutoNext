@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Untouch Flow (Auto Scroll • Auto Next)
 // @namespace    https://github.com/untouch-flow
-// @version      2.0.3
+// @version      2.1.0
 // @description  Silky-smooth auto-scroller for manga, webtoons & web articles with MiniTool, page zoom, multilingual support (13 languages) & auto-next navigation for Safari iOS, iPadOS, Chrome, Firefox, Kiwi Browser
 // @author       Sufarwee Dunyamat (sufarweededev)
 // @match        *://*/*
@@ -581,6 +581,16 @@
             display: inline-flex; align-items: center; justify-content: center;
             transition: all .15s ease;
           }
+          .mini {
+            display: none; width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5); opacity: 0.85;
+            align-items: center; justify-content: center; cursor: grab;
+            touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+          }
+          .mini.dragging { transform: scale(1.1); opacity: 1; }
+          .md { width: 10px; height: 10px; border-radius: 50%; background: #94a3b8; }
+          .mini.act .md { background: #10b981; box-shadow: 0 0 6px #10b981; }
           .hide-btn:hover {
             background: rgba(239, 68, 68, 0.35); border-color: #ef4444; color: #ffffff;
             transform: scale(1.02);
@@ -600,6 +610,7 @@
             <button class="hide-btn" id="hBtn" title="${dict.hideTip}">${dict.hideBtn}</button>
           </div>
         </div>
+        <div class="mini" id="mini" title="Double-tap to open"><span class="md"></span></div>
       `, 'text/html');
       this.root.append(...ui.head.childNodes, ...ui.body.childNodes);
 
@@ -607,7 +618,7 @@
       this.el = {
         p: $('p'), d: $('d'), t: $('t'), s: $('s'),
         m: $('m'), a: $('a'), play: $('play'), zBtn: $('zBtn'), c: $('c'),
-        hBtn: $('hBtn'), drag: $('drag')
+        hBtn: $('hBtn'), drag: $('drag'), mini: $('mini')
       };
 
       this.el.m.onclick = e => { e.stopPropagation(); this.cb.onSpeed(-20); };
@@ -621,6 +632,20 @@
         e.stopPropagation();
         this.cb.onHide();
       };
+      // Minimized dot: double-tap to expand (drag to move it)
+      let miniDown = null, lastTap = 0;
+      this.el.mini.addEventListener('pointerdown', e => { miniDown = { x: e.clientX, y: e.clientY }; });
+      this.el.mini.addEventListener('pointerup', e => {
+        if (!miniDown || Math.hypot(e.clientX - miniDown.x, e.clientY - miniDown.y) > 8) { miniDown = null; lastTap = 0; return; }
+        miniDown = null;
+        const now = Date.now();
+        if (now - lastTap < 400) {
+          lastTap = 0;
+          this.setMinimized(false);
+          this.storage.save({ hudMin: false });
+          this.applyPosition(this.storage.get().hudPos);
+        } else lastTap = now;
+      });
 
       // Draggable Setup
       this.setupDraggable();
@@ -628,6 +653,7 @@
       // Apply initial position & visibility
       this.applyPosition(this.storage.get().hudPos);
       this.setVisible(this.storage.get().showHUD);
+      this.setMinimized(Boolean(this.storage.get().hudMin));
 
       // Re-clamp on window resize
       window.addEventListener('resize', () => {
@@ -652,7 +678,7 @@
         initialLeft = rect.left;
         initialTop = rect.top;
 
-        this.el.p.classList.add('dragging');
+        this.el.p.classList.add('dragging'); this.el.mini.classList.add('dragging');
         window.addEventListener('pointermove', onPointerMove, { passive: false });
         window.addEventListener('pointerup', onPointerUp, { passive: false });
         window.addEventListener('pointercancel', onPointerUp, { passive: false });
@@ -682,7 +708,7 @@
       const onPointerUp = () => {
         if (!isDragging) return;
         isDragging = false;
-        this.el.p.classList.remove('dragging');
+        this.el.p.classList.remove('dragging'); this.el.mini.classList.remove('dragging');
         window.removeEventListener('pointermove', onPointerMove);
         window.removeEventListener('pointerup', onPointerUp);
         window.removeEventListener('pointercancel', onPointerUp);
@@ -694,6 +720,7 @@
       };
 
       this.el.p.addEventListener('pointerdown', onPointerDown);
+      this.el.mini.addEventListener('pointerdown', onPointerDown);
     }
 
     applyPosition(pos) {
@@ -741,6 +768,7 @@
         this.el.zBtn.title = dict.zoomTip;
       }
       this.el.d.className = 'dot';
+      this.el.mini.classList.toggle('act', state === 'SCROLLING');
 
       // Auto-hide dimming when scrolling
       const shouldDim = Boolean(this.storage.get().autoHideHUD && state === 'SCROLLING');
@@ -787,6 +815,11 @@
       this.el.p.classList.remove('dimmed');
     }
 
+    setMinimized(v) {
+      if (!this.el) return;
+      this.el.p.style.display = v ? 'none' : '';
+      this.el.mini.style.display = v ? 'flex' : 'none';
+    }
     setVisible(v) {
       if (this.host) {
         this.host.classList.toggle('mfs-hidden', !v);
@@ -816,6 +849,7 @@
       this.lastUrl = location.href;
       this.isProg = false;
       this.wasPlayingBeforeHidden = false;
+      this.touching = false; this.settling = false;
     }
     async start() {
       await this.storage.init();
@@ -826,8 +860,9 @@
         onSpeed: d => this.adjustSpeed(d),
         onCancel: () => this.cancelCountdown(),
         onHide: () => {
-          this.storage.save({ showHUD: false });
-          this.hud.setVisible(false);
+          // Minimize to a small edge tab (tap it to restore) instead of vanishing, so touch users can bring it back
+          this.hud.setMinimized(true);
+          this.storage.save({ hudMin: true });
         },
         onZoomCycle: () => {
           const cycles = [100, 85, 70, 120];
@@ -874,6 +909,9 @@
       this.storage.onChange((cfg, c) => {
         if ('showHUD' in c) {
           this.hud.setVisible(cfg.showHUD);
+        }
+        if ('hudMin' in c) {
+          this.hud.setMinimized(Boolean(cfg.hudMin));
         }
         if ('hudPos' in c) {
           this.hud.applyPosition(cfg.hudPos);
@@ -941,7 +979,30 @@
         }
       };
       window.addEventListener('wheel', onUser, { passive: true });
-      window.addEventListener('touchstart', onUser, { passive: true });
+      // Touch: finger down = user takes over (so a swipe can speed things up);
+      // auto-scroll resumes once momentum settles. Two-finger tap = pause/resume.
+      const inHud = e => e.composedPath && e.composedPath().some(el => el === this.hud?.host || (el && el.id === 'mfs-host'));
+      let tap = null;
+      window.addEventListener('touchstart', e => {
+        if (inHud(e)) return;
+        this.touching = true; this.settling = false;
+        if (e.touches.length === 2) tap = { t: Date.now() };
+        else if (e.touches.length > 2) tap = null;
+      }, { passive: true });
+      window.addEventListener('touchmove', () => { tap = null; }, { passive: true });
+      const onTouchEnd = e => {
+        if (e.touches && e.touches.length > 0) return;
+        this.touching = false;
+        if (tap && Date.now() - tap.t < 350) {
+          tap = null;
+          if (this.state === 'COUNTDOWN_NEXT') this.cancelCountdown(); else this.toggle();
+          return;
+        }
+        tap = null;
+        this.settling = true; this.settleY = null; this.lastMoveTs = performance.now();
+      };
+      window.addEventListener('touchend', onTouchEnd, { passive: true });
+      window.addEventListener('touchcancel', onTouchEnd, { passive: true });
 
       // Tab visibility: auto-pause when leaving tab, auto-resume when returning!
       document.addEventListener('visibilitychange', () => {
@@ -1132,8 +1193,21 @@
       }
       return false;
     }
+    holdForTouch(now) {
+      const y = this.getMetrics().y;
+      const hold = () => { this.pos = y; this.lastSetY = null; this.lastTs = now; this.subPixelAccumulator = 0; return true; };
+      if (this.touching) { this.lastMoveTs = now; return hold(); }
+      if (this.settling) {
+        if (this.settleY != null && Math.abs(y - this.settleY) > 0.5) this.lastMoveTs = now;
+        this.settleY = y;
+        if (now - this.lastMoveTs < 250) return hold();
+        this.settling = false;
+      }
+      return false;
+    }
     step(now) {
       if (!this.isPlaying || this.state !== 'SCROLLING') return;
+      if (this.holdForTouch(now)) { this.rafId = requestAnimationFrame(this.step.bind(this)); return; }
       if (this.checkPdfPageEnd()) {
         this.pause();
         return;

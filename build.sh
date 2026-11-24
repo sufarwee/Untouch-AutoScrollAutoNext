@@ -10,4 +10,9 @@ for t in chrome edge firefox; do
   if [ "$t" = firefox ]; then cp manifest.firefox.json firefox/manifest.json; else cp manifest.json "$t"/manifest.json; fi
   (cd "$t" && zip -qr "../dist/untouch-flow-$t.zip" . -x '.DS_Store')
 done
-echo "built: chrome/ edge/ firefox/ + dist/*.zip"
+M1=safari-ios/method-1-orion; M2=safari-ios/method-2-safari-userscript
+mkdir -p $M1 $M2
+cp dist/untouch-flow-firefox.zip $M1/untouch-flow-orion.zip
+cp manga-flow-scroller.user.js $M2/
+(cd $M2 && rm -f untouch-flow-safari-userscript.zip && zip -q untouch-flow-safari-userscript.zip manga-flow-scroller.user.js)
+echo "built: chrome/ edge/ firefox/ + dist/*.zip, safari-ios/ userscript"

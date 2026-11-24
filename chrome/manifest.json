@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Untouch Flow (Auto Scroll • Auto Next)",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Untouch Flow - Smooth auto-scroller for manga, webtoons and web articles with smart page zoom and auto-next navigation.",
   "permissions": [
     "storage",
