@@ -54,7 +54,7 @@
     en: {
       statusPlaying: 'Scrolling', statusPaused: 'Paused',
       startBtn: 'Start Scrolling (Space)', pauseBtn: 'Pause (Space)',
-      modeManga: 'Manga Mode', modeReader: 'Reader Mode',
+      modeManga: 'Manga Mode', modeReader: 'Reader Mode', modeChat: 'AI Chat',
       speedLbl: 'Scroll Speed',
       zoomLbl: '🔍 Manga / Page Zoom', zoomSub: 'Scale manga to comfortable reading width',
       nextDelayLbl: 'Next Chapter Delay', nextDelaySub: 'Hold at bottom before advancing to next chapter',
@@ -79,7 +79,7 @@
     th: {
       statusPlaying: 'กำลังเลื่อน', statusPaused: 'หยุดชั่วคราว',
       startBtn: 'เริ่มเลื่อนหน้าจอ (Space)', pauseBtn: 'หยุดชั่วคราว (Space)',
-      modeManga: 'โหมดมังงะ', modeReader: 'โหมดอ่านบทความ',
+      modeManga: 'โหมดมังงะ', modeReader: 'โหมดอ่านบทความ', modeChat: 'แชท AI',
       speedLbl: 'ความเร็ว (Speed)',
       zoomLbl: '🔍 ย่อ/ขยายรูปภาพ (Zoom)', zoomSub: 'ย่อภาพการ์ตูนให้อ่านได้ในระยะสายตา',
       nextDelayLbl: 'ดีเลย์เปลี่ยนตอน (Next Delay)', nextDelaySub: 'หน่วงเวลาเมื่อถึงท้ายตอนก่อนเปิดตอนถัดไปอัตโนมัติ',
@@ -104,7 +104,7 @@
     ja: {
       statusPlaying: 'スクロール中', statusPaused: '一時停止',
       startBtn: 'スクロール開始 (Space)', pauseBtn: '一時停止 (Space)',
-      modeManga: 'マンガモード', modeReader: 'リーダーモード',
+      modeManga: 'マンガモード', modeReader: 'リーダーモード', modeChat: 'AIチャット',
       speedLbl: 'スクロール速度',
       zoomLbl: '🔍 画像ズーム (Zoom)', zoomSub: '視野に合わせてマンガ画像を縮小/拡大',
       nextDelayLbl: '次の話への待機時間', nextDelaySub: '末尾到達後、次の話を開くまでの待機秒数',
@@ -129,7 +129,7 @@
     ko: {
       statusPlaying: '스크롤 중', statusPaused: '일시정지',
       startBtn: '스크롤 시작 (Space)', pauseBtn: '일시정지 (Space)',
-      modeManga: '웹툰 모드', modeReader: '리더 모드',
+      modeManga: '웹툰 모드', modeReader: '리더 모드', modeChat: 'AI 채팅',
       speedLbl: '스크롤 속도',
       zoomLbl: '🔍 이미지 확대/축소 (Zoom)', zoomSub: '시야 범위에 맞춰 웹툰 폭 조절',
       nextDelayLbl: '다음 화 대기시간', nextDelaySub: '하단 도달 후 다음 화로 넘어가기 전 대기시간',
@@ -154,7 +154,7 @@
     zh: {
       statusPlaying: '正在滚动', statusPaused: '已暂停',
       startBtn: '开始滚动 (Space)', pauseBtn: '暂停滚动 (Space)',
-      modeManga: '漫画模式', modeReader: '阅读模式',
+      modeManga: '漫画模式', modeReader: '阅读模式', modeChat: 'AI 聊天',
       speedLbl: '滚动速度',
       zoomLbl: '🔍 图片缩放 (Zoom)', zoomSub: '缩减漫画宽度，尽在视线范围内',
       nextDelayLbl: '翻话延迟时间', nextDelaySub: '到底后自动前往下一话前的停留秒数',
@@ -179,7 +179,7 @@
     ar: {
       statusPlaying: 'تمرير', statusPaused: 'مؤقت',
       startBtn: 'بدء التمرير (Space)', pauseBtn: 'إيقاف مؤقت (Space)',
-      modeManga: 'وضع المانجا', modeReader: 'وضع القراءة',
+      modeManga: 'وضع المانجا', modeReader: 'وضع القراءة', modeChat: 'محادثة AI',
       speedLbl: 'سرعة التمرير',
       zoomLbl: '🔍 تكبير/تصغير (Zoom)', zoomSub: 'تعديل عرض المانجا ليناسب مدى رؤيتك',
       nextDelayLbl: 'مهلة الفصل التالي', nextDelaySub: 'الانتظار عند نهاية الصفحة قبل فتح الفصل التالي',
@@ -204,7 +204,7 @@
     ru: {
       statusPlaying: 'Прокрутка', statusPaused: 'Пауза',
       startBtn: 'Начать прокрутку (Space)', pauseBtn: 'Пауза (Space)',
-      modeManga: 'Режим манги', modeReader: 'Режим чтения',
+      modeManga: 'Режим манги', modeReader: 'Режим чтения', modeChat: 'AI-чат',
       speedLbl: 'Скорость прокрутки',
       zoomLbl: '🔍 Масштаб изображений (Zoom)', zoomSub: 'Масштабируйте под комфортную ширину обзора',
       nextDelayLbl: 'Задержка смены главы', nextDelaySub: 'Ожидание внизу страницы перед переходом',
@@ -229,7 +229,7 @@
     de: {
       statusPlaying: 'Scrollen', statusPaused: 'Pausiert',
       startBtn: 'Scrollen starten (Space)', pauseBtn: 'Pausieren (Space)',
-      modeManga: 'Manga-Modus', modeReader: 'Lesemodus',
+      modeManga: 'Manga-Modus', modeReader: 'Lesemodus', modeChat: 'KI-Chat',
       speedLbl: 'Scrollgeschwindigkeit',
       zoomLbl: '🔍 Bildgröße anpassen (Zoom)', zoomSub: 'Manga auf angenehme Sichtbreite skalieren',
       nextDelayLbl: 'Nächstes Kapitel Verzögerung', nextDelaySub: 'Wartezeit am Ende vor dem Weiterblättern',
@@ -254,7 +254,7 @@
     it: {
       statusPlaying: 'Scorrimento', statusPaused: 'In pausa',
       startBtn: 'Avvia scorrimento (Space)', pauseBtn: 'Pausa (Space)',
-      modeManga: 'Modalità Manga', modeReader: 'Modalità Lettura',
+      modeManga: 'Modalità Manga', modeReader: 'Modalità Lettura', modeChat: 'Chat AI',
       speedLbl: 'Velocità scorrimento',
       zoomLbl: '🔍 Zoom immagini (Zoom)', zoomSub: 'Adatta la larghezza dei pannelli al tuo campo visivo',
       nextDelayLbl: 'Ritardo capitolo successivo', nextDelaySub: 'Attesa a fine pagina prima di avanzare',
@@ -279,7 +279,7 @@
     es: {
       statusPlaying: 'Desplazando', statusPaused: 'En pausa',
       startBtn: 'Iniciar desplazamiento (Space)', pauseBtn: 'Pausar (Space)',
-      modeManga: 'Modo Manga', modeReader: 'Modo Lector',
+      modeManga: 'Modo Manga', modeReader: 'Modo Lector', modeChat: 'Chat IA',
       speedLbl: 'Velocidad de desplazamiento',
       zoomLbl: '🔍 Zoom de imágenes (Zoom)', zoomSub: 'Escala el ancho de la viñeta para lectura cómoda',
       nextDelayLbl: 'Retardo del siguiente capítulo', nextDelaySub: 'Espera al final antes de avanzar automáticamente',
@@ -304,7 +304,7 @@
     vi: {
       statusPlaying: 'Đang cuộn', statusPaused: 'Tạm dừng',
       startBtn: 'Bắt đầu cuộn (Space)', pauseBtn: 'Tạm dừng (Space)',
-      modeManga: 'Chế độ Truyện tranh', modeReader: 'Chế độ Đọc sách',
+      modeManga: 'Chế độ Truyện tranh', modeReader: 'Chế độ Đọc sách', modeChat: 'Chat AI',
       speedLbl: 'Tốc độ cuộn trang',
       zoomLbl: '🔍 Thu phóng hình ảnh (Zoom)', zoomSub: 'Thu nhỏ chiều rộng truyện vừa tầm mắt đọc',
       nextDelayLbl: 'Độ trễ chuyển chương', nextDelaySub: 'Thời gian chờ ở cuối trang trước khi sang chương mới',
@@ -329,7 +329,7 @@
     ms: {
       statusPlaying: 'Menatal', statusPaused: 'Dijeda',
       startBtn: 'Mula Menatal (Space)', pauseBtn: 'Jeda (Space)',
-      modeManga: 'Mod Manga', modeReader: 'Mod Pembaca',
+      modeManga: 'Mod Manga', modeReader: 'Mod Pembaca', modeChat: 'Sembang AI',
       speedLbl: 'Kelajuan Menatal',
       zoomLbl: '🔍 Zum Imej (Zoom)', zoomSub: 'Sesuaikan lebar manga mengikut pandangan mata',
       nextDelayLbl: 'Lengah Bab Seterusnya', nextDelaySub: 'Masa menunggu di hujung sebelum ke bab seterusnya',
@@ -354,7 +354,7 @@
     id: {
       statusPlaying: 'Menggulung', statusPaused: 'Dijeda',
       startBtn: 'Mulai Menggulung (Space)', pauseBtn: 'Jeda (Space)',
-      modeManga: 'Mode Manga', modeReader: 'Mode Baca',
+      modeManga: 'Mode Manga', modeReader: 'Mode Baca', modeChat: 'Chat AI',
       speedLbl: 'Kecepatan Gulir',
       zoomLbl: '🔍 Zoom Gambar (Zoom)', zoomSub: 'Sesuaikan lebar manga agar pas dalam pandangan',
       nextDelayLbl: 'Jeda Chapter Berikutnya', nextDelaySub: 'Waktu tunggu di akhir halaman sebelum chapter baru',
@@ -391,7 +391,7 @@
     donateBtn: $('donateBtn'), donateModal: $('donateModal'),
     closeDonate: $('closeDonate'), doneDonateBtn: $('doneDonateBtn'),
     copyPpBtn: $('copyPpBtn'), ppNum: $('ppNum'),
-    tabManga: $('tabManga'), tabReader: $('tabReader'),
+    tabManga: $('tabManga'), tabReader: $('tabReader'), tabChat: $('tabChat'),
     playBtn: $('playBtn'), playIco: $('playIco'), playTxt: $('playTxt'),
     speedSlider: $('speedSlider'), speedNum: $('speedNum'),
     mangaPresets: $('mangaPresets'), readerPresets: $('readerPresets'),
@@ -471,15 +471,17 @@
     const lang = cfg.lang || 'en';
     const dict = I18N[lang] || I18N.en;
     const prof = getCurrentProfile();
-    const isReader = cfg.mode === 'reader';
+    const isChat = cfg.mode === 'chat';
+    const isReader = cfg.mode === 'reader' || isChat; // chat reuses the reader layout (no chapters/zoom)
 
     // Mode Switcher Sync
     ui.tabManga.classList.toggle('active', !isReader);
-    ui.tabReader.classList.toggle('active', isReader);
+    ui.tabReader.classList.toggle('active', cfg.mode === 'reader');
+    ui.tabChat.classList.toggle('active', isChat);
     ui.mangaPresets.classList.toggle('hidden', isReader);
     ui.readerPresets.classList.toggle('hidden', !isReader);
     ui.mangaTimingSec.classList.toggle('hidden', isReader);
-    ui.readerHelperSec.classList.toggle('hidden', !isReader);
+    ui.readerHelperSec.classList.toggle('hidden', !isReader || isChat);
     ui.autoNextItem.classList.toggle('hidden', isReader);
 
     // Speed
@@ -657,6 +659,7 @@
     // Mode Switcher (Manga vs Reader)
     ui.tabManga.onclick = () => save({ mode: 'manga' });
     ui.tabReader.onclick = () => save({ mode: 'reader' });
+    ui.tabChat.onclick = () => save({ mode: 'chat' });
 
     // Language Switcher Dropdown
     if (ui.langSelect) {

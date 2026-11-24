@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Untouch Flow (Auto Scroll • Auto Next)
 // @namespace    https://github.com/untouch-flow
-// @version      2.1.0
+// @version      2.2.0
 // @description  Silky-smooth auto-scroller for manga, webtoons & web articles with MiniTool, page zoom, multilingual support (13 languages) & auto-next navigation for Safari iOS, iPadOS, Chrome, Firefox, Kiwi Browser
 // @author       Sufarwee Dunyamat (sufarweededev)
 // @match        *://*/*
@@ -58,9 +58,10 @@
       hideBtn: "✕ Hide",
       hideTip: "Hide this HUD (Restore via Extension menu or press Alt+H)",
       dragTip: "Click and drag to reposition",
-      speedMinusTip: "Speed -20 px/s (Arrow Down)",
-      speedPlusTip: "Speed +20 px/s (Arrow Up)",
+      speedMinusTip: "Speed -20 px/s (Shift+↓)",
+      speedPlusTip: "Speed +20 px/s (Shift+↑)",
       playTip: "Toggle Play/Pause (Space / Alt+S)",
+      miniTip: "Double-click to open",
       zoomTip: "Zoom images (Click to cycle 100% -> 85% -> 70% -> 120%)"
     },
     th: {
@@ -76,9 +77,10 @@
       hideBtn: "✕ ซ่อน",
       hideTip: "ซ่อนปุ่มนี้ (เปิดใหม่ได้ในเมนู Extension หรือกด Alt+H)",
       dragTip: "คลิกลากเพื่อย้ายตำแหน่ง",
-      speedMinusTip: "ลดความเร็ว -20 px/s (ลูกศรลง)",
-      speedPlusTip: "เพิ่มความเร็ว +20 px/s (ลูกศรขึ้น)",
+      speedMinusTip: "ลดความเร็ว -20 px/s (Shift+↓)",
+      speedPlusTip: "เพิ่มความเร็ว +20 px/s (Shift+↑)",
       playTip: "เริ่ม/หยุดชั่วคราว (Space / Alt+S)",
+      miniTip: "ดับเบิลคลิกเพื่อเปิด",
       zoomTip: "ย่อ/ขยายรูปภาพ (คลิกเพื่อสลับ 100% -> 85% -> 70% -> 120%)"
     },
     ja: {
@@ -94,9 +96,10 @@
       hideBtn: "✕ 非表示",
       hideTip: "ボタンを非表示 (Alt+H または設定で再表示)",
       dragTip: "ドラッグして位置を変更",
-      speedMinusTip: "速度 -20 px/s (下矢印)",
-      speedPlusTip: "速度 +20 px/s (上矢印)",
+      speedMinusTip: "速度 -20 px/s (Shift+↓)",
+      speedPlusTip: "速度 +20 px/s (Shift+↑)",
       playTip: "開始 / 一時停止 (Space / Alt+S)",
+      miniTip: "ダブルクリックで開く",
       zoomTip: "画像の拡大縮小 (100% -> 85% -> 70% -> 120%)"
     },
     ko: {
@@ -112,9 +115,10 @@
       hideBtn: "✕ 숨기기",
       hideTip: "버튼 숨기기 (Alt+H 또는 메뉴에서 복원)",
       dragTip: "드래그하여 위치 이동",
-      speedMinusTip: "속도 -20 px/s (아래 화살표)",
-      speedPlusTip: "속도 +20 px/s (위 화살표)",
+      speedMinusTip: "속도 -20 px/s (Shift+↓)",
+      speedPlusTip: "속도 +20 px/s (Shift+↑)",
       playTip: "재생 / 일시정지 (Space / Alt+S)",
+      miniTip: "더블클릭하여 열기",
       zoomTip: "이미지 확대/축소 (100% -> 85% -> 70% -> 120%)"
     },
     zh: {
@@ -130,9 +134,10 @@
       hideBtn: "✕ 隐藏",
       hideTip: "隐藏此悬浮球 (按 Alt+H 或在插件菜单中恢复)",
       dragTip: "按住拖动位置",
-      speedMinusTip: "减速 -20 px/s (下方向键)",
-      speedPlusTip: "加速 +20 px/s (上方向键)",
+      speedMinusTip: "减速 -20 px/s (Shift+↓)",
+      speedPlusTip: "加速 +20 px/s (Shift+↑)",
       playTip: "开始 / 暂停 (Space / Alt+S)",
+      miniTip: "双击打开",
       zoomTip: "缩放图片 (切换 100% -> 85% -> 70% -> 120%)"
     },
     ar: {
@@ -148,9 +153,10 @@
       hideBtn: "✕ إخفاء",
       hideTip: "إخفاء الزر العائم (استعادة عبر Alt+H أو القائمة)",
       dragTip: "سحب لتحريك الموضع",
-      speedMinusTip: "تقليل السرعة -20 (سهم لأسفل)",
-      speedPlusTip: "زيادة السرعة +20 (سهم لأعلى)",
+      speedMinusTip: "تقليل السرعة -20 (Shift+↓)",
+      speedPlusTip: "زيادة السرعة +20 (Shift+↑)",
       playTip: "تشغيل / إيقاف مؤقت (Space / Alt+S)",
+      miniTip: "انقر نقرًا مزدوجًا للفتح",
       zoomTip: "تكبير/تصغير الصور (100% -> 85% -> 70% -> 120%)"
     },
     ru: {
@@ -166,9 +172,10 @@
       hideBtn: "✕ Скрыть",
       hideTip: "Скрыть кнопку (восстановить через меню или Alt+H)",
       dragTip: "Зажмите для перемещения",
-      speedMinusTip: "Скорость -20 px/s (Стрелка вниз)",
-      speedPlusTip: "Скорость +20 px/s (Стрелка вверх)",
+      speedMinusTip: "Скорость -20 px/s (Shift+↓)",
+      speedPlusTip: "Скорость +20 px/s (Shift+↑)",
       playTip: "Старт / Пауза (Space / Alt+S)",
+      miniTip: "Дважды щёлкните, чтобы открыть",
       zoomTip: "Масштаб манги (100% -> 85% -> 70% -> 120%)"
     },
     de: {
@@ -184,9 +191,10 @@
       hideBtn: "✕ Ausblenden",
       hideTip: "Button ausblenden (wiederherstellen via Menü oder Alt+H)",
       dragTip: "Ziehen zum Verschieben",
-      speedMinusTip: "Tempo -20 px/s (Pfeil runter)",
-      speedPlusTip: "Tempo +20 px/s (Pfeil hoch)",
+      speedMinusTip: "Tempo -20 px/s (Shift+↓)",
+      speedPlusTip: "Tempo +20 px/s (Shift+↑)",
       playTip: "Start / Pause (Space / Alt+S)",
+      miniTip: "Doppelklick zum Öffnen",
       zoomTip: "Bildgröße (100% -> 85% -> 70% -> 120%)"
     },
     it: {
@@ -202,9 +210,10 @@
       hideBtn: "✕ Nascondi",
       hideTip: "Nascondi pulsante (ripristina via menu o Alt+H)",
       dragTip: "Trascina per riposizionare",
-      speedMinusTip: "Velocità -20 px/s (Freccia giù)",
-      speedPlusTip: "Velocità +20 px/s (Freccia su)",
+      speedMinusTip: "Velocità -20 px/s (Shift+↓)",
+      speedPlusTip: "Velocità +20 px/s (Shift+↑)",
       playTip: "Avvia / Pausa (Space / Alt+S)",
+      miniTip: "Doppio clic per aprire",
       zoomTip: "Zoom immagini (100% -> 85% -> 70% -> 120%)"
     },
     es: {
@@ -220,9 +229,10 @@
       hideBtn: "✕ Ocultar",
       hideTip: "Ocultar botón (restaurar con Alt+H o menú)",
       dragTip: "Arrastrar para mover",
-      speedMinusTip: "Velocidad -20 px/s (Flecha abajo)",
-      speedPlusTip: "Velocidad +20 px/s (Flecha arriba)",
+      speedMinusTip: "Velocidad -20 px/s (Shift+↓)",
+      speedPlusTip: "Velocidad +20 px/s (Shift+↑)",
       playTip: "Iniciar / Pausar (Space / Alt+S)",
+      miniTip: "Doble clic para abrir",
       zoomTip: "Zoom de imágenes (100% -> 85% -> 70% -> 120%)"
     },
     vi: {
@@ -238,9 +248,10 @@
       hideBtn: "✕ Ẩn",
       hideTip: "Ẩn nút này (bật lại qua menu Extension hoặc Alt+H)",
       dragTip: "Nhấp và kéo để đổi vị trí",
-      speedMinusTip: "Giảm tốc -20 px/s (Phím xuống)",
-      speedPlusTip: "Tăng tốc +20 px/s (Phím lên)",
+      speedMinusTip: "Giảm tốc -20 px/s (Shift+↓)",
+      speedPlusTip: "Tăng tốc +20 px/s (Shift+↑)",
       playTip: "Bắt đầu / Tạm dừng (Space / Alt+S)",
+      miniTip: "Nhấp đúp để mở",
       zoomTip: "Thu nhỏ/phóng to ảnh (100% -> 85% -> 70% -> 120%)"
     },
     ms: {
@@ -256,9 +267,10 @@
       hideBtn: "✕ Sembunyi",
       hideTip: "Sembunyi butang ini (buka semula via menu atau Alt+H)",
       dragTip: "Klik dan seret untuk ubah kedudukan",
-      speedMinusTip: "Kelajuan -20 px/s (Anak panah bawah)",
-      speedPlusTip: "Kelajuan +20 px/s (Anak panah atas)",
+      speedMinusTip: "Kelajuan -20 px/s (Shift+↓)",
+      speedPlusTip: "Kelajuan +20 px/s (Shift+↑)",
       playTip: "Mula / Jeda (Space / Alt+S)",
+      miniTip: "Klik dua kali untuk buka",
       zoomTip: "Zum imej (100% -> 85% -> 70% -> 120%)"
     },
     id: {
@@ -274,9 +286,10 @@
       hideBtn: "✕ Sembunyikan",
       hideTip: "Sembunyikan tombol (buka kembali via menu atau Alt+H)",
       dragTip: "Klik dan seret untuk pindah posisi",
-      speedMinusTip: "Kecepatan -20 px/s (Panah bawah)",
-      speedPlusTip: "Kecepatan +20 px/s (Panah atas)",
+      speedMinusTip: "Kecepatan -20 px/s (Shift+↓)",
+      speedPlusTip: "Kecepatan +20 px/s (Shift+↑)",
       playTip: "Mulai / Jeda (Space / Alt+S)",
+      miniTip: "Klik dua kali untuk membuka",
       zoomTip: "Zoom gambar (100% -> 85% -> 70% -> 120%)"
     },
   };
@@ -655,8 +668,11 @@
       this.setVisible(this.storage.get().showHUD);
       this.setMinimized(Boolean(this.storage.get().hudMin));
 
+      // Keep HUD the same visual size when the browser is zoomed (Cmd/Ctrl +/-)
+      this.fixScale();
       // Re-clamp on window resize
       window.addEventListener('resize', () => {
+        this.fixScale();
         const pos = this.storage.get().hudPos;
         if (pos) this.applyPosition(pos);
       });
@@ -723,6 +739,12 @@
       this.el.mini.addEventListener('pointerdown', onPointerDown);
     }
 
+    fixScale() {
+      // Browser zoom shrinks innerWidth vs outerWidth; only trust ratios that match a real zoom step (devtools docking gives odd ratios)
+      const r = window.outerWidth / window.innerWidth;
+      const step = [0.25, 0.33, 0.5, 0.67, 0.75, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2, 2.5, 3, 4, 5].find(z => Math.abs(r - z) / z < 0.04) || 1;
+      this.host.style.setProperty('transform', step === 1 ? 'none' : `scale(${1 / step})`, 'important');
+    }
     applyPosition(pos) {
       if (pos && typeof pos.x === 'number' && typeof pos.y === 'number') {
         const rect = this.host.getBoundingClientRect();
@@ -737,7 +759,9 @@
         this.host.style.setProperty('top', `${y}px`, 'important');
         this.host.style.setProperty('right', 'auto', 'important');
         this.host.style.setProperty('bottom', 'auto', 'important');
+        this.host.style.setProperty('transform-origin', 'top left', 'important');
       } else {
+        this.host.style.setProperty('transform-origin', 'bottom right', 'important');
         this.host.style.setProperty('left', 'auto', 'important');
         this.host.style.setProperty('top', 'auto', 'important');
         this.host.style.setProperty('right', 'calc(14px + env(safe-area-inset-right, 0px))', 'important');
@@ -766,6 +790,7 @@
       if (this.el.zBtn) {
         this.el.zBtn.textContent = `${this.storage.get().zoom || 100}%`;
         this.el.zBtn.title = dict.zoomTip;
+        this.el.mini.title = dict.miniTip;
       }
       this.el.d.className = 'dot';
       this.el.mini.classList.toggle('act', state === 'SCROLLING');
@@ -952,7 +977,27 @@
       window.addEventListener('popstate', check);
       setInterval(check, 1000);
     }
+    getChatScroller() {
+      const now = performance.now();
+      if (this.chatEl && this.chatEl.isConnected && now - (this.chatElAt || 0) < 1500) return this.chatEl;
+      this.chatElAt = now;
+      let best = null, bestH = 0;
+      // Longest big scrollable box = the conversation pane (re-checked every 1.5s, sites re-render often)
+      for (const el of document.querySelectorAll('div,main,section,article,ul,ol')) {
+        const h = el.scrollHeight;
+        if (h <= bestH || h <= el.clientHeight + 50) continue;
+        if (el.clientHeight < window.innerHeight * 0.4 || el.clientWidth < window.innerWidth * 0.4) continue;
+        const o = getComputedStyle(el).overflowY;
+        if (o === 'auto' || o === 'scroll' || o === 'overlay') { best = el; bestH = h; }
+      }
+      this.chatEl = best;
+      return best;
+    }
     getMetrics() {
+      if (this.storage.get().mode === 'chat') {
+        const el = this.getChatScroller();
+        if (el) return { t: el, y: el.scrollTop, vh: el.clientHeight, h: el.scrollHeight };
+      }
       if (document.documentElement.scrollHeight > window.innerHeight + 10) {
         return {
           t: window,
@@ -1026,6 +1071,9 @@
 
         // Spacebar: Toggle Play / Pause or Cancel countdown
         if (e.code === 'Space' || e.key === ' ' || e.keyCode === 32) {
+          // Never hijack Space on tabs where the user hasn't started Untouch Flow (YouTube, Spotify, etc.)
+          let armed = false; try { armed = sessionStorage.getItem('mfs_armed') === '1'; } catch (_) {}
+          if (!this.isPlaying && !armed && this.state !== 'COUNTDOWN_NEXT') return;
           e.preventDefault();
           if (this.state === 'COUNTDOWN_NEXT') {
             this.cancelCountdown();
@@ -1052,18 +1100,19 @@
           if (this.state === 'COUNTDOWN_NEXT') this.cancelCountdown();
           else this.pause();
         }
-        // Speed adjustments
-        else if (this.isPlaying && e.key === 'ArrowUp') {
+        // Speed: Shift+Arrow only; plain arrows stay native so the user can scroll by hand while playing
+        else if (this.isPlaying && e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey && e.key === 'ArrowUp') {
           e.preventDefault();
           this.adjustSpeed(20);
-        } else if (this.isPlaying && e.key === 'ArrowDown') {
+        } else if (this.isPlaying && e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey && e.key === 'ArrowDown') {
           e.preventDefault();
           this.adjustSpeed(-20);
         }
-      });
+      }, true); // capture: sites often swallow arrow keys
     }
     toggle() { this.isPlaying ? this.pause() : this.play(); }
     play() {
+      try { sessionStorage.setItem('mfs_armed', '1'); } catch (_) {}
       this.isPlaying = true;
       this.state = 'SCROLLING';
       this.lastTs = performance.now();
@@ -1083,7 +1132,12 @@
     adjustSpeed(d) {
       const n = Math.max(10, Math.min(2000, this.speed + d));
       this.speed = n;
-      this.storage.save({ speed: n });
+      // Effective speed comes from profile/site override, so write there or onChanged resets it
+      const st = this.storage, cfg = st.get(), eff = st.getEffectiveProfile(), patch = { speed: n };
+      const pid = Object.keys(cfg.profiles || {}).find(k => cfg.profiles[k] === eff);
+      if (pid) patch.profiles = { ...cfg.profiles, [pid]: { ...eff, speed: n } };
+      else if (cfg.siteOverrides && typeof cfg.siteOverrides[st.host] === 'number') patch.siteOverrides = { ...cfg.siteOverrides, [st.host]: n };
+      st.save(patch);
       this.hud.update(this.state, this.isPlaying, this.speed);
     }
     getReaderContainer() {
@@ -1144,6 +1198,7 @@
       return imgs.length > 0 ? imgs[imgs.length - 1] : null;
     }
     isEndOfContentReached(cur) {
+      if (this.storage.get().mode === 'chat') return cur.y + cur.vh >= cur.h - 15;
       const hasScrolled = cur.y > 250;
 
       // 1. Bottom chapter navigation or Next button has entered comfortably into viewport
@@ -1227,7 +1282,14 @@
           this.pos += px;
           this.lastSetY = this.pos;
           window.scrollTo(0, this.pos);
-        } else m.t.scrollTop += px;
+        } else {
+          if (this.lastTarget !== m.t) { this.lastTarget = m.t; this.lastSetY = null; }
+          const y = m.t.scrollTop;
+          if (this.lastSetY == null || Math.abs(y - this.lastSetY) > 6) this.pos = y;
+          this.pos += px;
+          this.lastSetY = this.pos;
+          m.t.scrollTop = this.pos;
+        }
         requestAnimationFrame(() => { this.isProg = false; });
       }
       const cur = this.getMetrics();
@@ -1253,7 +1315,7 @@
       });
 
       const mode = this.storage.get().mode || 'manga';
-      if (mode === 'reader') {
+      if (mode === 'reader' || mode === 'chat') {
         return this.pause();
       }
 

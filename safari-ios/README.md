@@ -15,7 +15,7 @@ Two methods. Pick one.
 
 ## Method 2: Safari + Userscripts
 1. Install **Userscripts** (App Store). Settings > Safari > Extensions > Userscripts: on, "Always Allow on This Website".
-2. Unzip `untouch-flow-safari-userscript.zip` in Files, then move `manga-flow-scroller.user.js` into your Userscripts folder (overwrite the old copy). `@version` must be 2.1.0 or newer.
+2. Unzip `untouch-flow-safari-userscript.zip` in Files, then move `manga-flow-scroller.user.js` into your Userscripts folder (overwrite the old copy). `@version` must be 2.2.0 or newer.
 3. Safari `ᴀA` > Userscripts > script on, refresh the page, tap the MiniTool play button.
 
 ## Screenshots
