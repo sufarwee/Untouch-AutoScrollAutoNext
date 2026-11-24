@@ -50,6 +50,7 @@
       speedPlusTip: "Speed +20 px/s (Shift+↑)",
       playTip: "Toggle Play/Pause (Space / Alt+S)",
       miniTip: "Double-click to open",
+      noChat: "Nothing to scroll here",
       zoomTip: "Zoom images (Click to cycle 100% -> 85% -> 70% -> 120%)"
     },
     th: {
@@ -69,6 +70,7 @@
       speedPlusTip: "เพิ่มความเร็ว +20 px/s (Shift+↑)",
       playTip: "เริ่ม/หยุดชั่วคราว (Space / Alt+S)",
       miniTip: "ดับเบิลคลิกเพื่อเปิด",
+      noChat: "ไม่พบส่วนที่เลื่อนได้",
       zoomTip: "ย่อ/ขยายรูปภาพ (คลิกเพื่อสลับ 100% -> 85% -> 70% -> 120%)"
     },
     ja: {
@@ -88,6 +90,7 @@
       speedPlusTip: "速度 +20 px/s (Shift+↑)",
       playTip: "開始 / 一時停止 (Space / Alt+S)",
       miniTip: "ダブルクリックで開く",
+      noChat: "Nothing to scroll here",
       zoomTip: "画像の拡大縮小 (100% -> 85% -> 70% -> 120%)"
     },
     ko: {
@@ -107,6 +110,7 @@
       speedPlusTip: "속도 +20 px/s (Shift+↑)",
       playTip: "재생 / 일시정지 (Space / Alt+S)",
       miniTip: "더블클릭하여 열기",
+      noChat: "Nothing to scroll here",
       zoomTip: "이미지 확대/축소 (100% -> 85% -> 70% -> 120%)"
     },
     zh: {
@@ -126,6 +130,7 @@
       speedPlusTip: "加速 +20 px/s (Shift+↑)",
       playTip: "开始 / 暂停 (Space / Alt+S)",
       miniTip: "双击打开",
+      noChat: "Nothing to scroll here",
       zoomTip: "缩放图片 (切换 100% -> 85% -> 70% -> 120%)"
     },
     ar: {
@@ -145,6 +150,7 @@
       speedPlusTip: "زيادة السرعة +20 (Shift+↑)",
       playTip: "تشغيل / إيقاف مؤقت (Space / Alt+S)",
       miniTip: "انقر نقرًا مزدوجًا للفتح",
+      noChat: "Nothing to scroll here",
       zoomTip: "تكبير/تصغير الصور (100% -> 85% -> 70% -> 120%)"
     },
     ru: {
@@ -164,6 +170,7 @@
       speedPlusTip: "Скорость +20 px/s (Shift+↑)",
       playTip: "Старт / Пауза (Space / Alt+S)",
       miniTip: "Дважды щёлкните, чтобы открыть",
+      noChat: "Nothing to scroll here",
       zoomTip: "Масштаб манги (100% -> 85% -> 70% -> 120%)"
     },
     de: {
@@ -183,6 +190,7 @@
       speedPlusTip: "Tempo +20 px/s (Shift+↑)",
       playTip: "Start / Pause (Space / Alt+S)",
       miniTip: "Doppelklick zum Öffnen",
+      noChat: "Nothing to scroll here",
       zoomTip: "Bildgröße (100% -> 85% -> 70% -> 120%)"
     },
     it: {
@@ -202,6 +210,7 @@
       speedPlusTip: "Velocità +20 px/s (Shift+↑)",
       playTip: "Avvia / Pausa (Space / Alt+S)",
       miniTip: "Doppio clic per aprire",
+      noChat: "Nothing to scroll here",
       zoomTip: "Zoom immagini (100% -> 85% -> 70% -> 120%)"
     },
     es: {
@@ -221,6 +230,7 @@
       speedPlusTip: "Velocidad +20 px/s (Shift+↑)",
       playTip: "Iniciar / Pausar (Space / Alt+S)",
       miniTip: "Doble clic para abrir",
+      noChat: "Nothing to scroll here",
       zoomTip: "Zoom de imágenes (100% -> 85% -> 70% -> 120%)"
     },
     vi: {
@@ -240,6 +250,7 @@
       speedPlusTip: "Tăng tốc +20 px/s (Shift+↑)",
       playTip: "Bắt đầu / Tạm dừng (Space / Alt+S)",
       miniTip: "Nhấp đúp để mở",
+      noChat: "Nothing to scroll here",
       zoomTip: "Thu nhỏ/phóng to ảnh (100% -> 85% -> 70% -> 120%)"
     },
     ms: {
@@ -259,6 +270,7 @@
       speedPlusTip: "Kelajuan +20 px/s (Shift+↑)",
       playTip: "Mula / Jeda (Space / Alt+S)",
       miniTip: "Klik dua kali untuk buka",
+      noChat: "Nothing to scroll here",
       zoomTip: "Zum imej (100% -> 85% -> 70% -> 120%)"
     },
     id: {
@@ -278,6 +290,7 @@
       speedPlusTip: "Kecepatan +20 px/s (Shift+↑)",
       playTip: "Mulai / Jeda (Space / Alt+S)",
       miniTip: "Klik dua kali untuk membuka",
+      noChat: "Nothing to scroll here",
       zoomTip: "Zoom gambar (100% -> 85% -> 70% -> 120%)"
     },
   };
@@ -295,12 +308,14 @@
           try {
             const raw = localStorage.getItem('__MFS_CFG__');
             if (raw) this.cfg = { ...DEF, ...JSON.parse(raw) };
+            if (this.cfg.mode === 'chat') this.cfg.mode = 'reader';
           } catch (e) {}
           return res(this.cfg);
         }
         chrome.storage.local.remove('isPlaying');
         chrome.storage.local.get(null, r => {
           this.cfg = { ...DEF, ...r };
+          if (this.cfg.mode === 'chat') this.cfg.mode = 'reader';
           res(this.cfg);
         });
         chrome.storage.onChanged.addListener((c, a) => {
@@ -379,8 +394,11 @@
   class NextChapterFinder {
     constructor(storage) {
       this.storage = storage;
-      this.neg = /(\b|_)(prev|previous|list|all[\s_-]*chapters)(\b|_)|ก่อนหน้า|ย้อนกลับ|สารบัญ/i;
-      this.pos = /(\b|_)(next([\s_-]*(chapter|chap|ch|ep|episode))?|chapter[\s_-]*next)(\b|_)|ตอนต่อไป|ตอนถัดไป|ถัดไป|หน้าถัดไป/i;
+      // Words meaning "next" / "previous" in many languages (non-Latin scripts need no word boundary)
+      this.nextWords = /(^|[^a-z])(next|nxt|forward|siguiente|pr[oó]ximo|seguinte|suivant|suivante|prochain|prochaine|n[aä]chst|weiter|volgende|successiv|prossim|avanti|selanjutnya|berikutnya|seterusnya|lanjut|sonraki|ileri|nast[eę]pn|kolejn|dalej)|ถัดไป|ต่อไป|次の|次へ|次話|次章|次回|次ページ|다음|下一|下[页頁章话話集回]|后一|後一|التالي|التالى|التالية|अगला|अगले|הבא|بعدی|επόμενο|следующ|далее|вперёд|наступн|tiếp theo|chương sau|chương tiếp|tập sau|trang sau/i;
+      this.prevWords = /(^|[^a-z])(prev|previous|back|older|before|earlier|anterior|pr[eé]c[eé]dent|zur[uü]ck|vorherig|precedente|indietro|sebelum|trước|[oö]nceki|poprzedni|list|all[\s_-]*chapters|index|menu|comment|share|home|bookmark)|ก่อนหน้า|ย้อนกลับ|หน้าก่อน|ตอนก่อน|สารบัญ|前の|前話|前章|前回|前へ|一覧|이전|뒤로|목록|上一|前一|上[页頁]|目录|目錄|السابق|предыдущ|назад/i;
+      this.nextClass = /(^|[\s_-])(next|nxt)([\s_-]|$)|nextep|next-?chap|next-?page|btn-?next|link_?next|pg_?next|chapter-?next|(^|[\s_-])forward([\s_-]|$)/i;
+      this.nextIcon = '[class*="arrow-right"],[class*="right-arrow"],[class*="chevron-right"],[class*="angle-right"],[class*="caret-right"],[class*="icon-next"],[class*="next-icon"]';
     }
     findTsReaderInfo() {
       // Direct detection of WordPress MangaReader / ts_reader configuration
@@ -409,22 +427,36 @@
         return ts;
       }
 
+      // MangaPlus: the next-chapter control is a plain <div> ("To Chapter #003"), chapter ids in the URL are not sequential
+      if (location.hostname === 'mangaplus.shueisha.co.jp') {
+        const cur = parseInt((document.querySelector('[class*="chapterTitle"]')?.textContent.match(/#\s*(\d+)/) || [])[1], 10);
+        if (cur >= 0) {
+          for (const el of document.querySelectorAll('div,a,button')) {
+            if (el.children.length > 2 || el.closest('[class*="eader"],nav')) continue;
+            const m = (el.textContent || '').trim().match(/^\D{0,40}#\s*(\d+)\s*$/);
+            if (m && parseInt(m[1], 10) === cur + 1 && this.isVisible(el)) return el;
+          }
+        }
+      }
+
       // 2. Semantic link or next-rel tag
       const sem = document.querySelector('a[rel="next"], link[rel="next"]');
       if (sem && this.isValid(sem)) return sem;
 
       // 3. CMS specific next buttons
-      const cms = document.querySelectorAll('.next_page, .nav-next a, .ch-next-btn, a.next, a.btn-next, [class*="next-chap"], [class*="next_chap"], [id*="next-chap"], [id*="next_chap"]');
+      const cms = document.querySelectorAll('.next_page, .nav-next a, .ch-next-btn, a.next, a.btn-next, [class*="next-chap"], [class*="next_chap"], [class*="link_next"], [id*="next-chap"], [id*="next_chap"]');
       for (const el of cms) {
         if (this.isVisible(el) && this.isValid(el)) return el;
       }
 
-      // 4. General link/button search with Thai & English positive keywords
-      for (const el of document.querySelectorAll('a, button, [role="button"]')) {
-        if (!this.isVisible(el) || el.disabled || el.getAttribute('aria-disabled') === 'true') continue;
-        const t = `${el.textContent || ''} ${el.getAttribute('aria-label') || ''} ${el.getAttribute('title') || ''}`.trim();
-        if (!this.neg.test(t) && this.pos.test(t) && this.isValid(el)) return el;
+      // 4. Score every link/button on several signals (text, aria-label, title, icon alt, class/id, arrow symbols); highest wins, ties go to the later one
+      let best = null, bestScore = 0;
+      for (const el of document.querySelectorAll('a, button, [role="button"], [role="link"], input[type="button"]')) {
+        if (!this.isVisible(el) || el.disabled || el.getAttribute('aria-disabled') === 'true' || !this.isValid(el)) continue;
+        const sc = this.scoreNext(el);
+        if (sc >= bestScore && sc >= 4) { best = el; bestScore = sc; }
       }
+      if (best) return best;
 
       // 5. URL fallback increment (if enabled in settings)
       if (this.storage.get().enableUrlFallback) {
@@ -435,6 +467,22 @@
         }
       }
       return null;
+    }
+    scoreNext(el) {
+      const txt = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      const short = txt.length <= 50 ? txt : '';
+      const alt = [...el.querySelectorAll('img[alt],svg title')].map(n => n.getAttribute('alt') || n.textContent).join(' ');
+      const attrs = `${el.getAttribute('aria-label') || ''} ${el.getAttribute('title') || ''} ${el.getAttribute('value') || ''} ${alt}`;
+      const ci = `${typeof el.className === 'string' ? el.className : ''} ${el.id || ''}`;
+      if (this.prevWords.test(`${short} ${attrs} ${ci}`)) return 0;
+      let sc = 0;
+      if (short && this.nextWords.test(short)) sc += 5;
+      if (this.nextWords.test(attrs)) sc += 5;
+      if (this.nextClass.test(ci)) sc += 4;
+      if (/^[\s›»→⇒▶►▷>⟩❯❱]+$/.test(short) && short) sc += 3;
+      if (el.querySelector(this.nextIcon)) sc += 3;
+      if (sc && el.getBoundingClientRect().top > window.innerHeight * 0.4) sc += 1;
+      return sc;
     }
     isVisible(el) {
       if (!el) return false;
@@ -519,8 +567,8 @@
       const dict = this.getDict();
 
       this.root = host.attachShadow({ mode: 'open' });
-      const ui = new DOMParser().parseFromString(`
-        <style>
+      // Built with createElement (no HTML parsing) so strict Trusted Types pages such as Gemini do not block the HUD
+      const css = `
           * {
             box-sizing: border-box; margin: 0; padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
@@ -539,7 +587,7 @@
             font-size: 11.5px; color: #f8fafc; cursor: grab;
             max-width: calc(100vw - 16px);
           }
-          .p.dimmed { opacity: 0.15 !important; }
+          .p.dimmed { opacity: 0.5 !important; }
           .p.dimmed:hover { opacity: 1 !important; }
           .p.dragging {
             cursor: grabbing !important;
@@ -596,24 +644,30 @@
             background: rgba(239, 68, 68, 0.35); border-color: #ef4444; color: #ffffff;
             transform: scale(1.02);
           }
-        </style>
-        <div class="p" id="p">
-          <div class="drag-handle" id="drag" title="${dict.dragTip}">⠿</div>
-          <div class="dot" id="d"></div>
-          <span class="t" id="t">${dict.paused}</span>
-          <span class="s" id="s">140 px/s</span>
-          <div class="bs">
-            <button class="b" id="m" title="${dict.speedMinusTip}">−</button>
-            <button class="b" id="a" title="${dict.speedPlusTip}">+</button>
-            <button class="b pb" id="play" title="${dict.playTip}">▶</button>
-            <button class="b zb" id="zBtn" title="${dict.zoomTip}">100%</button>
-            <button class="cb" id="c">${dict.cancel}</button>
-            <button class="hide-btn" id="hBtn" title="${dict.hideTip}">${dict.hideBtn}</button>
-          </div>
-        </div>
-        <div class="mini" id="mini" title="Double-tap to open"><span class="md"></span></div>
-      `, 'text/html');
-      this.root.append(...ui.head.childNodes, ...ui.body.childNodes);
+        `;
+      const mk = (tag, attrs, ...kids) => {
+        const e = document.createElement(tag);
+        for (const k in attrs) e.setAttribute(k, attrs[k]);
+        e.append(...kids);
+        return e;
+      };
+      const styleEl = document.createElement('style');
+      styleEl.textContent = css;
+      this.root.append(
+        styleEl,
+        mk('div', { class: 'p', id: 'p' },
+          mk('div', { class: 'drag-handle', id: 'drag', title: dict.dragTip }, '⠿'),
+          mk('div', { class: 'dot', id: 'd' }),
+          mk('span', { class: 't', id: 't' }, dict.paused),
+          mk('span', { class: 's', id: 's' }, '140 px/s'),
+          mk('div', { class: 'bs' },
+            mk('button', { class: 'b', id: 'm', title: dict.speedMinusTip }, '−'),
+            mk('button', { class: 'b', id: 'a', title: dict.speedPlusTip }, '+'),
+            mk('button', { class: 'b pb', id: 'play', title: dict.playTip }, '▶'),
+            mk('button', { class: 'b zb', id: 'zBtn', title: dict.zoomTip }, '100%'),
+            mk('button', { class: 'cb', id: 'c' }, dict.cancel),
+            mk('button', { class: 'hide-btn', id: 'hBtn', title: dict.hideTip }, dict.hideBtn))),
+        mk('div', { class: 'mini', id: 'mini', title: 'Double-tap to open' }, mk('span', { class: 'md' })));
 
       const $ = id => this.root.getElementById(id);
       this.el = {
@@ -656,6 +710,15 @@
       this.setVisible(this.storage.get().showHUD);
       this.setMinimized(Boolean(this.storage.get().hudMin));
 
+      // Any mouse/touch movement brings a dimmed HUD back to full opacity for 2.5s
+      const wake = () => {
+        if (!this.wantDim) return;
+        this.awake = true; this.el.p.classList.remove('dimmed');
+        clearTimeout(this.awakeT);
+        this.awakeT = setTimeout(() => { this.awake = false; this.el.p.classList.toggle('dimmed', Boolean(this.wantDim)); }, 2500);
+      };
+      window.addEventListener('mousemove', wake, { passive: true });
+      window.addEventListener('touchstart', wake, { passive: true });
       // Keep HUD the same visual size when the browser is zoomed (Cmd/Ctrl +/-)
       this.fixScale();
       // Re-clamp on window resize
@@ -791,7 +854,8 @@
 
       // Auto-hide dimming when scrolling
       const shouldDim = Boolean(this.storage.get().autoHideHUD && state === 'SCROLLING');
-      this.el.p.classList.toggle('dimmed', shouldDim);
+      this.wantDim = shouldDim;
+      this.el.p.classList.toggle('dimmed', shouldDim && !this.awake);
 
       if (statusKey) {
         this.lastStatusKey = statusKey;
@@ -979,8 +1043,8 @@
       if (this.chatEl && this.chatEl.isConnected && now - (this.chatElAt || 0) < 1500) return this.chatEl;
       this.chatElAt = now;
       let best = null, bestH = 0;
-      // Longest big scrollable box = the conversation pane (re-checked every 1.5s, sites re-render often)
-      for (const el of document.querySelectorAll('div,main,section,article,ul,ol')) {
+      // Longest big scrollable box = the conversation pane; any tag since Gemini uses a custom <infinite-scroller> (re-checked every 1.5s)
+      for (const el of document.querySelectorAll('*')) {
         const h = el.scrollHeight;
         if (h <= bestH || h <= el.clientHeight + 50) continue;
         if (el.clientHeight < window.innerHeight * 0.4 || el.clientWidth < window.innerWidth * 0.4) continue;
@@ -990,10 +1054,18 @@
       this.chatEl = best;
       return best;
     }
+    isReaderMode() {
+      const m = this.storage.get().mode;
+      return m === 'reader' || m === 'chat'; // 'chat' = legacy value from v2.2.0 test builds
+    }
     getMetrics() {
-      if (this.storage.get().mode === 'chat') {
+      if (this.isReaderMode()) {
+        // Reader: article pages scroll the window; AI chats scroll an inner pane. Pick whichever has more to scroll.
         const el = this.getChatScroller();
-        if (el) return { t: el, y: el.scrollTop, vh: el.clientHeight, h: el.scrollHeight };
+        const winRange = document.documentElement.scrollHeight - window.innerHeight;
+        if (el && el.scrollHeight - el.clientHeight > Math.max(winRange, 50)) {
+          return { t: el, y: el.scrollTop, vh: el.clientHeight, h: el.scrollHeight };
+        }
       }
       if (document.documentElement.scrollHeight > window.innerHeight + 10) {
         return {
@@ -1097,6 +1169,12 @@
           if (this.state === 'COUNTDOWN_NEXT') this.cancelCountdown();
           else this.pause();
         }
+        // Plain Up/Down while playing: jump ~30% of the viewport per press (native arrow scroll is only ~40px). Engine re-syncs to the new position like after a swipe.
+        else if (this.isPlaying && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+          e.preventDefault();
+          const m = this.getMetrics(), d = Math.round(m.vh * 0.3) * (e.key === 'ArrowDown' ? 1 : -1);
+          if (m.t === window) window.scrollBy(0, d); else m.t.scrollTop += d;
+        }
         // Speed: Shift+Arrow only; plain arrows stay native so the user can scroll by hand while playing
         else if (this.isPlaying && e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey && e.key === 'ArrowUp') {
           e.preventDefault();
@@ -1195,7 +1273,7 @@
       return imgs.length > 0 ? imgs[imgs.length - 1] : null;
     }
     isEndOfContentReached(cur) {
-      if (this.storage.get().mode === 'chat') return cur.y + cur.vh >= cur.h - 15;
+      if (this.isReaderMode() && cur.t !== window) return cur.y + cur.vh >= cur.h - 15; // inner pane (AI chat): plain bottom
       const hasScrolled = cur.y > 250;
 
       // 1. Bottom chapter navigation or Next button has entered comfortably into viewport
@@ -1297,6 +1375,7 @@
       this.rafId = requestAnimationFrame(this.step.bind(this));
     }
     handleBottom() {
+      if (this.isReaderMode() && !this.getChatScroller() && document.documentElement.scrollHeight <= window.innerHeight + 10) return this.pause('noChat');
       this.cleanVerification();
       this.cleanCountdown();
       this.subPixelAccumulator = 0;
@@ -1312,7 +1391,7 @@
       });
 
       const mode = this.storage.get().mode || 'manga';
-      if (mode === 'reader' || mode === 'chat') {
+      if (this.isReaderMode()) {
         return this.pause();
       }
 

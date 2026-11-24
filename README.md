@@ -1,6 +1,6 @@
 # 🚀 Untouch Flow
 
-> **Hands-free, buttery-smooth reading for Manga, Webtoons, and Web Novels.**  
+> **Hands-free, buttery-smooth reading in your browser: blogs, manga, feeds, and documents.**  
 > Crafted with **Pure Vanilla JavaScript (Zero Build, Zero Dependencies, <100KB)**.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -8,6 +8,20 @@
 [![60fps Precision](https://img.shields.io/badge/Physics-60fps%20Sub--Pixel-emerald.svg)](content.js)
 [![Universal](https://img.shields.io/badge/Platforms-Chrome%20%7C%20Edge%20%7C%20Firefox%20%7C%20Safari%20iOS%20%7C%20Android-orange.svg)](#-universal-platform-support)
 [![Languages](https://img.shields.io/badge/i18n-13%20Languages-indigo.svg)](#-multilingual-out-of-the-box)
+
+---
+
+## 📖 Built For Reading In The Browser
+
+Untouch Flow is made for **reading**: long **blog posts**, **manga & webtoons**, **feeds**, and **documents** you open in a browser tab.
+
+Two modes:
+- **Manga Mode**: continuous scrolling, finds the *Next chapter* button (many languages, link/button/icon/class signals) and continues by itself.
+- **Reader Mode** (blogs, news, Medium, documents shown in the page, **AI chats** such as ChatGPT, Gemini, Claude, Copilot, DeepSeek, Kimi, Qwen): scrolls the page or the chat pane (picked automatically), stops at the end, never navigates away. It only scrolls the page for you. It does not read, collect, or send your content anywhere.
+
+**Good to know**
+- **MangaPlus** (`mangaplus.shueisha.co.jp`) is supported: it finds the "To Chapter #N" button and continues automatically.
+- **PDF:** only PDFs shown as a web page work (for example the pdf.js viewer at `mozilla.github.io/pdf.js/web/viewer.html`, then use *Open file*). The built-in PDF viewer of Chrome, Brave and Edge is a protected browser page that extensions cannot scroll.
 
 ---
 
@@ -61,8 +75,8 @@ Reading tall webtoon strips on a 27" or 34" ultrawide monitor is painful because
 | Shortcut | Action | What it does |
 | :--- | :--- | :--- |
 | <kbd>Space</kbd> / <kbd>Alt + S</kbd> | **Play / Pause** | Instantly start or pause smooth scrolling |
-| <kbd>↑</kbd> (Arrow Up) | **Speed +20** | Speed up by 20 px/s on the fly |
-| <kbd>↓</kbd> (Arrow Down) | **Speed -20** | Slow down by 20 px/s |
+| <kbd>Shift</kbd> + <kbd>↑</kbd> | **Speed +20** | Speed up by 20 px/s on the fly (plain <kbd>↑</kbd>/<kbd>↓</kbd> scroll the page by hand) |
+| <kbd>Shift</kbd> + <kbd>↓</kbd> | **Speed -20** | Slow down by 20 px/s |
 | <kbd>Alt + H</kbd> | **Toggle MiniTool** | Show or hide the on-screen pill controller |
 | <kbd>Esc</kbd> | **Stop** | Stop engine and cancel bottom timer |
 
@@ -140,8 +154,7 @@ Untouch-AutoScrollAutoNext/
 
 Untouch Flow is 100% open-source and free. If it saved your fingers from endless scrolling, feel free to buy us a coffee!
 
-- **PromptPay (Thailand)**: Scan via mobile banking app
-- **Buy Me a Coffee**: [buymeacoffee.com](https://www.buymeacoffee.com)
+- **TrueMoney (Thailand)**: [Donate via TrueMoney](https://tmn.app.link/H0zks1aOk8b) · Sufarwee Dunyamat (`sufarweededev`)
 
 ---
 

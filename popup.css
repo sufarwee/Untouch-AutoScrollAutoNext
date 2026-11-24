@@ -102,7 +102,7 @@ body {
 
 /* Mode Switcher Segmented Control (Minimal & Modern, No Icons) */
 .mode-tabs {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px;
   background: rgba(15, 23, 42, 0.65); padding: 3px; border-radius: 7px; border: 1px solid var(--bd);
 }
 .mode-tab {
@@ -113,9 +113,6 @@ body {
 .mode-tab:hover { color: var(--t); background: rgba(255, 255, 255, 0.05); }
 .mode-tab.active {
   background: var(--p); color: #fff; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
-}
-#tabChat.mode-tab.active {
-  background: #0891b2; box-shadow: 0 2px 8px rgba(8, 145, 178, 0.35);
 }
 #tabReader.mode-tab.active {
   background: #059669; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
@@ -317,3 +314,6 @@ kbd { background: var(--c); border: 1px solid var(--bd); padding: 1px 3px; borde
 .modal-close-btn:hover { background: #475569; }
 
 .hidden { display: none !important; }
+
+.prof-saved { display: none; position: fixed; left: 10px; right: 10px; bottom: 10px; z-index: 50; box-shadow: 0 4px 14px rgba(0,0,0,.25); padding: 8px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; background: var(--ok); color: #fff; }
+.prof-saved.show { display: block; }
