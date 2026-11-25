@@ -4,6 +4,8 @@
 // @version      2.2.0
 // @description  Silky-smooth auto-scroller for manga, webtoons & web articles with MiniTool, page zoom, multilingual support (13 languages) & auto-next navigation for Safari iOS, iPadOS, Chrome, Firefox, Kiwi Browser
 // @author       Sufarwee Dunyamat (sufarweededev)
+// @license      Apache-2.0
+// @copyright    2026, Sufarwee Dunyamat (https://github.com/sufarwee)
 // @match        *://*/*
 // @noframes
 // @grant        none

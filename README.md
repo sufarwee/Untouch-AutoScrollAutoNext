@@ -3,7 +3,7 @@
 > **Hands-free, buttery-smooth reading in your browser: blogs, manga, feeds, and documents.**  
 > Crafted with **Pure Vanilla JavaScript (Zero Build, Zero Dependencies, <100KB)**.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Pure Vanilla JS](https://img.shields.io/badge/Stack-Vanilla%20JS%20(No%20npm)-f7df1e.svg?logo=javascript&logoColor=black)](content.js)
 [![60fps Precision](https://img.shields.io/badge/Physics-60fps%20Sub--Pixel-emerald.svg)](content.js)
 [![Universal](https://img.shields.io/badge/Platforms-Chrome%20%7C%20Edge%20%7C%20Firefox%20%7C%20Safari%20iOS%20%7C%20Android-orange.svg)](#-universal-platform-support)
@@ -160,4 +160,7 @@ Untouch Flow is 100% open-source and free. If it saved your fingers from endless
 
 ## 📄 License
 
-Open-sourced under the [MIT License](LICENSE). Feel free to fork, customize, and share!
+Source code: [Apache License 2.0](LICENSE). If you redistribute it, keep the license and the credit in [NOTICE](NOTICE).
+The name and logo are not covered: see [TRADEMARKS.md](TRADEMARKS.md).
+
+Copyright 2026 Sufarwee Dunyamat (sufarweededev)

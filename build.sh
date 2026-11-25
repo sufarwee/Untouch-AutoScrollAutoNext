@@ -3,7 +3,7 @@
 # Run: sh build.sh   (zips are written to dist/, which is git-ignored)
 set -e
 cd "$(dirname "$0")"
-SRC="bg.js content.js content.css popup.js popup.html popup.css"
+SRC="LICENSE NOTICE bg.js content.js content.css popup.js popup.html popup.css"
 rm -rf chrome edge firefox dist; mkdir -p dist
 for t in chrome edge firefox; do
   mkdir "$t"; cp $SRC "$t"/; cp -r icons "$t"/
