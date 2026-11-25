@@ -154,7 +154,7 @@ Untouch-AutoScrollAutoNext/
 
 Untouch Flow is 100% open-source and free. If it saved your fingers from endless scrolling, feel free to buy us a coffee!
 
-- **TrueMoney (Thailand)**: [Donate via TrueMoney](https://tmn.app.link/H0zks1aOk8b) · Sufarwee Dunyamat (`sufarweededev`)
+- **TrueMoney (Thailand)**: [Donate via TrueMoney](https://tmn.app.link/fJiav8etm8b) · Sufarwee Dunyamat (`sufarweededev`)
 
 ---
 

@@ -49,7 +49,6 @@
       speedMinusTip: "Speed -20 px/s (Shift+↓)",
       speedPlusTip: "Speed +20 px/s (Shift+↑)",
       playTip: "Toggle Play/Pause (Space / Alt+S)",
-      miniTip: "Double-click to open",
       noChat: "Nothing to scroll here",
       zoomTip: "Zoom images (Click to cycle 100% -> 85% -> 70% -> 120%)"
     },
@@ -69,7 +68,6 @@
       speedMinusTip: "ลดความเร็ว -20 px/s (Shift+↓)",
       speedPlusTip: "เพิ่มความเร็ว +20 px/s (Shift+↑)",
       playTip: "เริ่ม/หยุดชั่วคราว (Space / Alt+S)",
-      miniTip: "ดับเบิลคลิกเพื่อเปิด",
       noChat: "ไม่พบส่วนที่เลื่อนได้",
       zoomTip: "ย่อ/ขยายรูปภาพ (คลิกเพื่อสลับ 100% -> 85% -> 70% -> 120%)"
     },
@@ -89,7 +87,6 @@
       speedMinusTip: "速度 -20 px/s (Shift+↓)",
       speedPlusTip: "速度 +20 px/s (Shift+↑)",
       playTip: "開始 / 一時停止 (Space / Alt+S)",
-      miniTip: "ダブルクリックで開く",
       noChat: "Nothing to scroll here",
       zoomTip: "画像の拡大縮小 (100% -> 85% -> 70% -> 120%)"
     },
@@ -109,7 +106,6 @@
       speedMinusTip: "속도 -20 px/s (Shift+↓)",
       speedPlusTip: "속도 +20 px/s (Shift+↑)",
       playTip: "재생 / 일시정지 (Space / Alt+S)",
-      miniTip: "더블클릭하여 열기",
       noChat: "Nothing to scroll here",
       zoomTip: "이미지 확대/축소 (100% -> 85% -> 70% -> 120%)"
     },
@@ -129,7 +125,6 @@
       speedMinusTip: "减速 -20 px/s (Shift+↓)",
       speedPlusTip: "加速 +20 px/s (Shift+↑)",
       playTip: "开始 / 暂停 (Space / Alt+S)",
-      miniTip: "双击打开",
       noChat: "Nothing to scroll here",
       zoomTip: "缩放图片 (切换 100% -> 85% -> 70% -> 120%)"
     },
@@ -149,7 +144,6 @@
       speedMinusTip: "تقليل السرعة -20 (Shift+↓)",
       speedPlusTip: "زيادة السرعة +20 (Shift+↑)",
       playTip: "تشغيل / إيقاف مؤقت (Space / Alt+S)",
-      miniTip: "انقر نقرًا مزدوجًا للفتح",
       noChat: "Nothing to scroll here",
       zoomTip: "تكبير/تصغير الصور (100% -> 85% -> 70% -> 120%)"
     },
@@ -169,7 +163,6 @@
       speedMinusTip: "Скорость -20 px/s (Shift+↓)",
       speedPlusTip: "Скорость +20 px/s (Shift+↑)",
       playTip: "Старт / Пауза (Space / Alt+S)",
-      miniTip: "Дважды щёлкните, чтобы открыть",
       noChat: "Nothing to scroll here",
       zoomTip: "Масштаб манги (100% -> 85% -> 70% -> 120%)"
     },
@@ -189,7 +182,6 @@
       speedMinusTip: "Tempo -20 px/s (Shift+↓)",
       speedPlusTip: "Tempo +20 px/s (Shift+↑)",
       playTip: "Start / Pause (Space / Alt+S)",
-      miniTip: "Doppelklick zum Öffnen",
       noChat: "Nothing to scroll here",
       zoomTip: "Bildgröße (100% -> 85% -> 70% -> 120%)"
     },
@@ -209,7 +201,6 @@
       speedMinusTip: "Velocità -20 px/s (Shift+↓)",
       speedPlusTip: "Velocità +20 px/s (Shift+↑)",
       playTip: "Avvia / Pausa (Space / Alt+S)",
-      miniTip: "Doppio clic per aprire",
       noChat: "Nothing to scroll here",
       zoomTip: "Zoom immagini (100% -> 85% -> 70% -> 120%)"
     },
@@ -229,7 +220,6 @@
       speedMinusTip: "Velocidad -20 px/s (Shift+↓)",
       speedPlusTip: "Velocidad +20 px/s (Shift+↑)",
       playTip: "Iniciar / Pausar (Space / Alt+S)",
-      miniTip: "Doble clic para abrir",
       noChat: "Nothing to scroll here",
       zoomTip: "Zoom de imágenes (100% -> 85% -> 70% -> 120%)"
     },
@@ -249,7 +239,6 @@
       speedMinusTip: "Giảm tốc -20 px/s (Shift+↓)",
       speedPlusTip: "Tăng tốc +20 px/s (Shift+↑)",
       playTip: "Bắt đầu / Tạm dừng (Space / Alt+S)",
-      miniTip: "Nhấp đúp để mở",
       noChat: "Nothing to scroll here",
       zoomTip: "Thu nhỏ/phóng to ảnh (100% -> 85% -> 70% -> 120%)"
     },
@@ -269,7 +258,6 @@
       speedMinusTip: "Kelajuan -20 px/s (Shift+↓)",
       speedPlusTip: "Kelajuan +20 px/s (Shift+↑)",
       playTip: "Mula / Jeda (Space / Alt+S)",
-      miniTip: "Klik dua kali untuk buka",
       noChat: "Nothing to scroll here",
       zoomTip: "Zum imej (100% -> 85% -> 70% -> 120%)"
     },
@@ -289,7 +277,6 @@
       speedMinusTip: "Kecepatan -20 px/s (Shift+↓)",
       speedPlusTip: "Kecepatan +20 px/s (Shift+↑)",
       playTip: "Mulai / Jeda (Space / Alt+S)",
-      miniTip: "Klik dua kali untuk membuka",
       noChat: "Nothing to scroll here",
       zoomTip: "Zoom gambar (100% -> 85% -> 70% -> 120%)"
     },
@@ -638,6 +625,17 @@
             touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
           }
           .mini.dragging { transform: scale(1.1); opacity: 1; }
+          .mini { position: relative; }
+          .mini::after {
+            content: 'DoubleClick'; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+            padding: 3px 7px; border-radius: 5px; background: #0f172a; color: #fff;
+            font: 700 11px/1.4 sans-serif; white-space: nowrap; pointer-events: none; display: none;
+          }
+          .mini:hover::after { display: block; }
+          .mini.tip-left::after { left: 0; transform: none; }
+          .mini.tip-right::after { left: auto; right: 0; transform: none; }
+          .mini.tip-below::after { bottom: auto; top: calc(100% + 6px); }
+          .mini.dragging::after { display: none; }
           .md { width: 10px; height: 10px; border-radius: 50%; background: #94a3b8; }
           .mini.act .md { background: #10b981; box-shadow: 0 0 6px #10b981; }
           .hide-btn:hover {
@@ -667,7 +665,7 @@
             mk('button', { class: 'b zb', id: 'zBtn', title: dict.zoomTip }, '100%'),
             mk('button', { class: 'cb', id: 'c' }, dict.cancel),
             mk('button', { class: 'hide-btn', id: 'hBtn', title: dict.hideTip }, dict.hideBtn))),
-        mk('div', { class: 'mini', id: 'mini', title: 'Double-tap to open' }, mk('span', { class: 'md' })));
+        mk('div', { class: 'mini', id: 'mini', 'aria-label': 'DoubleClick' }, mk('span', { class: 'md' })));
 
       const $ = id => this.root.getElementById(id);
       this.el = {
@@ -689,6 +687,13 @@
       };
       // Minimized dot: double-tap to expand (drag to move it)
       let miniDown = null, lastTap = 0;
+      // Keep the tooltip on screen when the dot sits near an edge
+      this.el.mini.addEventListener('pointerenter', () => {
+        const r = this.el.mini.getBoundingClientRect(), c = this.el.mini.classList;
+        c.toggle('tip-left', r.left < 40);
+        c.toggle('tip-right', window.innerWidth - r.right < 40);
+        c.toggle('tip-below', r.top < 36);
+      });
       this.el.mini.addEventListener('pointerdown', e => { miniDown = { x: e.clientX, y: e.clientY }; });
       this.el.mini.addEventListener('pointerup', e => {
         if (!miniDown || Math.hypot(e.clientX - miniDown.x, e.clientY - miniDown.y) > 8) { miniDown = null; lastTap = 0; return; }
@@ -847,7 +852,6 @@
       if (this.el.zBtn) {
         this.el.zBtn.textContent = `${this.storage.get().zoom || 100}%`;
         this.el.zBtn.title = dict.zoomTip;
-        this.el.mini.title = dict.miniTip;
       }
       this.el.d.className = 'dot';
       this.el.mini.classList.toggle('act', state === 'SCROLLING');

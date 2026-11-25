@@ -11,17 +11,12 @@
     <header class="hdr">
       <div class="brand-wrap">
         <div class="brand">
-          <svg viewBox="0 0 24 24" class="ico"><path d="m7 13 5 5 5-5M7 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+          <img src="icons/icon-48.png" class="ico" alt="">
           <strong>Untouch Flow</strong>
         </div>
         <span class="brand-tag">Auto Scroll • Auto Next</span>
       </div>
       <div class="hdr-right">
-        <button class="donate-btn" id="donateBtn" title="Buy Me a Coffee / Donate">
-          <span class="coffee-ico">☕</span>
-          <span class="donate-lbl" data-i18n="donateLbl">Buy Me a Coffee</span>
-        </button>
-        
         <!-- Language Icon Picker (Only Flag/Globe Icon visible, Hover displays Language Name) -->
         <div class="lang-picker-box">
           <select class="lang-select" id="langSelect" title="English">
@@ -48,6 +43,8 @@
         </div>
       </div>
     </header>
+
+    <button class="donate-btn" id="donateBtn" data-i18n="donateLbl">☕ Donate / Support Developer</button>
 
     <!-- Mode Switcher (Modern Minimal Segmented Control, No Icons) -->
     <div class="mode-tabs">
@@ -225,16 +222,10 @@
           If Untouch Flow enhances your reading experience, buying a coffee is greatly appreciated! Thank you for your support ❤️
         </div>
         <div class="donate-channels">
-          <div class="chan-box">
-            <div class="chan-title">📱 PromptPay (พร้อมเพย์)</div>
-            <div class="pp-num-wrap">
-              <span class="pp-num" id="ppNum">095-xxx-xxxx</span>
-              <button class="copy-btn" id="copyPpBtn" data-i18n="copyBtn">Copy</button>
-            </div>
-            <div class="pp-tip" data-i18n="ppTip">(Scan via Thai Banking apps)</div>
-          </div>
-          <a href="https://www.buymeacoffee.com" target="_blank" class="chan-link-btn bmc">
-            <span>☕ Buy Me a Coffee (Card / Apple Pay)</span>
+          <img src="icons/tmn-qr.png" class="tmn-qr" width="220" height="220" alt="PromptPay QR code">
+          <div class="pp-tip">PromptPay (พร้อมเพย์) · ซูฟัรวี ดุลยมาศ</div>
+          <a href="https://tmn.app.link/fJiav8etm8b" target="_blank" rel="noopener" class="chan-link-btn tmn">
+            <span>Donate via TrueMoney</span>
             <span>↗</span>
           </a>
         </div>
